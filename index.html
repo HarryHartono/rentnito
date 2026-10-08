@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#060a0f">
+<title>Rentnito | Business plan and market opportunity (Singapore)</title>
+<meta name="description" content="Rentnito is a tenancy toolkit for Singapore: signed move-in and move-out condition reports, a tenant checklist with partner services, and overseas video walkthroughs.">
+<style>
+:root{
+  --bg:#060a0f; --card:rgba(255,255,255,.045); --ink:#e8f0ef; --muted:#93a8a4; --line:rgba(255,255,255,.10);
+  --accent:#2ee6c5; --accent2:#7c6bff; --accent-soft:rgba(46,230,197,.10);
+  --warn:#f0b35a; --warn-soft:rgba(240,179,90,.10);
+  --bad:#ff7d72; --bad-soft:rgba(255,125,114,.10);
+  --good:#5fe3a1; --good-soft:rgba(95,227,161,.10);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden;
+  background:radial-gradient(1100px 600px at 85% -10%,rgba(124,107,255,.20),transparent 60%),radial-gradient(900px 520px at -5% 8%,rgba(46,230,197,.15),transparent 60%),var(--bg);
+  background-attachment:fixed}
+a{color:var(--accent)}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 12px var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:20;background:rgba(6,10,15,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:18px;align-items:center;overflow-x:auto;white-space:nowrap;padding-top:11px;padding-bottom:11px}
+nav strong{color:var(--accent);margin-right:6px;letter-spacing:.04em;text-shadow:0 0 12px rgba(46,230,197,.6)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
+nav a:hover{color:var(--ink)}
+header.hero{padding:84px 0 40px;position:relative}
+.eyebrow{color:var(--accent);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:clamp(34px,6.4vw,60px);line-height:1.08;margin:12px 0 16px;font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(25px,4vw,34px);margin:0 0 8px;font-weight:800;letter-spacing:-.01em}
+h3{font-size:18px;margin:0 0 6px}
+.grad{background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.lead{font-size:19px;color:var(--muted);max-width:720px}
+.typed{font-size:18px;margin:14px 0 0;color:var(--ink);min-height:30px}
+.cursor{color:var(--accent);animation:blink 1s steps(1) infinite;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 6px}
+section{padding:52px 0;border-top:1px solid var(--line)}
+section>.wrap>.sub{color:var(--muted);margin:0 0 24px;max-width:760px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;overflow:hidden;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(46,230,197,.16),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.stat .num{font-size:30px;font-weight:800;color:var(--accent);line-height:1.15;text-shadow:0 0 18px rgba(46,230,197,.35)}
+.stat .num.pos{color:var(--good)} .stat .num.neg{color:var(--bad);text-shadow:none}
+.stat .lbl{font-size:14px;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;padding:2px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent);font-weight:700;border:1px solid rgba(46,230,197,.3)}
+.note{background:var(--warn-soft);color:var(--ink);border-left:4px solid var(--warn);padding:12px 16px;font-size:15px;margin-top:18px;border-radius:0 8px 8px 0}
+ul.tight{margin:6px 0 0;padding-left:20px;color:var(--muted);font-size:15px}
+ul.tight li{margin:3px 0}
+.flowtitle{margin:30px 0 10px;font-size:17px;font-weight:700;color:var(--accent)}
+.flow{display:flex;flex-direction:column;align-items:stretch;max-width:520px;margin:0 auto}
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-align:center;transition:opacity .45s,transform .45s,box-shadow .45s,border-color .45s}
+.step b{display:block}
+.step span{font-size:13px;color:var(--muted)}
+.step.hl{background:var(--accent-soft);border-color:rgba(46,230,197,.55)}
+.step.good{background:var(--good-soft);border-color:rgba(95,227,161,.55)}
+.step.bad{background:var(--bad-soft);border-color:rgba(255,125,114,.55)}
+.flow.anim .step{opacity:.25;transform:scale(.95)}
+.flow.anim .step.lit{opacity:1;transform:none;box-shadow:0 0 22px -6px var(--accent)}
+.down{text-align:center;color:var(--accent);line-height:1.6;font-size:18px;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.replay{display:block;margin:0 auto 12px;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 14px;font:inherit;font-size:12px;cursor:pointer;transition:.2s}
+.replay:hover{color:var(--accent);border-color:var(--accent)}
+.branch{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fan{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:620px){.fan{grid-template-columns:1fr 1fr}}
+.market{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:28px;align-items:center}
+@media(max-width:760px){.market{grid-template-columns:1fr}}
+.rings{position:relative;width:300px;height:300px;margin:0 auto}
+.ring{position:absolute;left:50%;bottom:0;transform:translateX(-50%) scale(.6);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.3,1.2),opacity .8s;border-radius:50%;display:flex;flex-direction:column;align-items:center;padding-top:12px;text-align:center;font-size:13px;line-height:1.3}
+.rings.in .ring{transform:translateX(-50%) scale(1);opacity:1}
+.ring b{font-size:18px;display:block}
+.r1{width:300px;height:300px;background:var(--accent-soft);border:1.5px solid var(--accent);box-shadow:0 0 50px -12px var(--accent)}
+.r2{width:200px;height:200px;background:rgba(46,230,197,.18);border:1.5px solid var(--accent);transition-delay:.18s}
+.r3{width:104px;height:104px;background:var(--accent);color:#03130f;border:1.5px solid var(--accent);padding-top:22px;transition-delay:.36s;animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(46,230,197,.5)}50%{box-shadow:0 0 0 14px rgba(46,230,197,0)}}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{font-size:13px;color:var(--muted);font-weight:600}
+tr.total td{font-weight:700}
+table.tl td,table.tl th{text-align:left;white-space:normal;vertical-align:top;font-size:14px}
+.scroll{overflow-x:auto}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin:4px 0 16px}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 18px;font:inherit;font-size:14px;cursor:pointer;transition:background .25s,color .25s}
+.seg button:hover{background:rgba(255,255,255,.06)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#03130f;font-weight:700}
+.bars{display:flex;align-items:flex-end;gap:14px;height:230px;padding:10px 4px 0}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.bar .stack{width:100%;max-width:70px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:6px 6px 0 0;overflow:hidden;transition:height .9s cubic-bezier(.2,.8,.2,1)}
+.bar .stack>div{transition:height .9s cubic-bezier(.2,.8,.2,1)}
+.bar .v{font-size:12px;color:var(--muted);margin-bottom:4px}
+.bar .y{font-size:13px;margin-top:6px;color:var(--muted)}
+.s-core{background:linear-gradient(180deg,#2ee6c5,#12a58d)}
+.s-partner{background:#e8a93a}
+.s-tour{background:#8b7cff}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+.canvas{display:grid;gap:12px;grid-template-columns:repeat(10,1fr)}
+.canvas .card{grid-column:span 2;padding:14px}
+.canvas .w{grid-column:span 5}
+.canvas .card h3{font-size:15px;color:var(--accent)}
+.canvas .card ul{margin:6px 0 0;padding-left:18px;font-size:14px;color:var(--muted)}
+@media(max-width:860px){.canvas{grid-template-columns:1fr 1fr}.canvas .card,.canvas .w{grid-column:span 1}.canvas .w{grid-column:span 2}}
+@media(max-width:520px){.canvas{grid-template-columns:1fr}.canvas .w{grid-column:span 1}}
+.timeline{position:relative;margin:0;padding:0 0 0 22px;list-style:none;border-left:2px solid var(--line)}
+.timeline::after{content:"";position:absolute;left:-2px;top:0;width:2px;height:var(--tp,0%);background:linear-gradient(var(--accent),var(--accent2));box-shadow:0 0 12px var(--accent)}
+.timeline li{position:relative;margin:0 0 22px;padding-left:16px}
+.timeline li::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:#26323a;border:2px solid var(--bg);transition:background .4s,box-shadow .4s}
+.timeline li.passed::before{background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.timeline .when{font-weight:700}
+.timeline .goal{display:inline-block;margin-top:4px;font-size:13px;background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:99px;font-weight:600;border:1px solid rgba(46,230,197,.3)}
+.timeline p{margin:4px 0 0;color:var(--muted);font-size:15px}
+footer{padding:36px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.btn{display:inline-block;background:linear-gradient(90deg,var(--accent),#6ef0dc);color:#03130f;text-decoration:none;padding:11px 20px;border-radius:99px;font-weight:700;border:0;font-family:inherit;font-size:15px;cursor:pointer;box-shadow:0 0 26px -6px var(--accent);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 34px -4px var(--accent)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+[hidden]{display:none !important}
+.ctl{display:block;font-size:14px;color:var(--muted)}
+.ctl b{color:var(--ink)}
+.ctl input{width:100%;margin-top:6px;accent-color:var(--accent)}
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-top:36px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.ticker .track{display:flex;gap:36px;width:max-content;animation:slide 32s linear infinite}
+.ticker span{color:var(--muted);font-size:14px;white-space:nowrap;letter-spacing:.06em;text-transform:uppercase}
+.ticker span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:12px;box-shadow:0 0 10px var(--accent)}
+@keyframes slide{to{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .6s ease,border-color .25s,box-shadow .25s}
+.reveal.in{opacity:1;transform:none}
+.card:hover{border-color:rgba(46,230,197,.45);box-shadow:0 12px 34px -14px rgba(46,230,197,.4)}
+.card:hover::before{opacity:1}
+.reveal.in.card:hover{transform:translateY(-3px)}
+.demo{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:36px;align-items:start}
+@media(max-width:820px){.demo{grid-template-columns:1fr}}
+.phone{width:300px;max-width:100%;margin:0 auto;border-radius:38px;background:#03060a;border:1.5px solid rgba(255,255,255,.2);padding:12px;box-shadow:0 30px 70px -24px rgba(46,230,197,.35),0 0 0 7px rgba(255,255,255,.03)}
+.notch{width:90px;height:18px;border-radius:12px;background:#000;margin:0 auto 8px}
+.screen{background:linear-gradient(180deg,#0c1620,#08101a);border-radius:28px;padding:16px;min-height:500px;display:flex;flex-direction:column;gap:10px}
+.ph-title{font-weight:800;font-size:16px}
+.ph-sub{font-size:12px;color:var(--muted)}
+.prog{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .5s;box-shadow:0 0 10px var(--accent)}
+.room{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);border-radius:12px;padding:11px 12px;font:inherit;font-size:14px;cursor:pointer;transition:border-color .25s,background .25s,transform .2s}
+.room:hover{border-color:var(--accent);transform:translateX(2px)}
+.room .chip{font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.08);color:var(--muted);white-space:nowrap}
+.room.done{border-color:rgba(95,227,161,.55);background:var(--good-soft);cursor:default}
+.room.done .chip{background:var(--good-soft);color:var(--good)}
+.signrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.sbtn{border:1px dashed var(--line);background:transparent;color:var(--muted);border-radius:12px;padding:10px;font:inherit;font-size:13px;cursor:not-allowed;transition:.3s}
+.sbtn.ready{border:1px solid var(--accent);color:var(--accent);cursor:pointer;animation:pulse 1.6s infinite}
+.sbtn.signed{background:var(--accent);color:#03130f;border:1px solid var(--accent);animation:none;cursor:default;font-weight:700}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(46,230,197,.45)}50%{box-shadow:0 0 0 8px rgba(46,230,197,0)}}
+.locked{display:none;border:1px solid rgba(46,230,197,.5);background:var(--accent-soft);border-radius:12px;padding:12px}
+.locked.show{display:block;animation:pop .5s}
+.locked .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.locked .chips span{font-size:12px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.05);opacity:0}
+.locked.show .chips span{animation:pop .4s forwards}
+.locked.show .chips span:nth-child(1){animation-delay:.25s}
+.locked.show .chips span:nth-child(2){animation-delay:.4s}
+.locked.show .chips span:nth-child(3){animation-delay:.55s}
+.locked.show .chips span:nth-child(4){animation-delay:.7s}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.steps-list{margin:8px 0 0;padding-left:20px;color:var(--muted)}
+.steps-list li{margin:6px 0}
+.compare{position:relative;height:210px;border-radius:14px;overflow:hidden;border:1px solid var(--line);user-select:none;--cut:50%;margin-top:10px}
+.scene{position:absolute;inset:0;background:linear-gradient(180deg,#1b2a36 0,#1b2a36 72%,#2b3136 72%,#2b3136 100%)}
+.scene::before{content:"";position:absolute;left:10%;top:14%;width:28%;height:38%;border:2px solid rgba(255,255,255,.2);border-radius:4px;background:rgba(124,107,255,.10)}
+.scene::after{content:"";position:absolute;left:0;right:0;top:72%;height:6px;background:rgba(255,255,255,.12)}
+.scene.out{clip-path:inset(0 0 0 var(--cut))}
+.scuff{position:absolute;left:62%;top:42%;width:50px;height:10px;border-radius:6px;background:rgba(0,0,0,.5);transform:rotate(-18deg);box-shadow:0 0 0 2px rgba(255,125,114,.8)}
+.flag{position:absolute;left:56%;top:24%;font-size:11px;background:var(--bad);color:#1a0604;padding:2px 8px;border-radius:99px;font-weight:700;white-space:nowrap}
+.lab{position:absolute;top:8px;font-size:12px;padding:2px 10px;border-radius:99px;background:rgba(0,0,0,.55);z-index:2}
+.handle{position:absolute;top:0;bottom:0;left:var(--cut);width:2px;background:var(--accent);box-shadow:0 0 14px var(--accent);z-index:3}
+input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;z-index:4}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  html{scroll-behavior:auto}
+}
+@media print{nav,#bg,#progress{display:none}body{background:#fff;color:#000}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="progress"></div>
+
+<nav aria-label="Sections">
+  <div class="wrap">
+    <strong>Rentnito</strong>
+    <a href="#problem">Problem</a>
+    <a href="#demo">Try it</a>
+    <a href="#how">How it works</a>
+    <a href="#market">Market</a>
+    <a href="#model">Revenue model</a>
+    <a href="#deposit">Deposits</a>
+    <a href="#forecast">Forecast</a>
+    <a href="#valuation">Valuation</a>
+    <a href="#canvas">Canvas</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#risks">Risks</a>
+    <a href="#team">Collaborate</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Singapore first &middot; Early-stage concept &middot; October 2026</div>
+    <h1>Rentnito: a <span class="grad">tenancy record</span> both sides can trust.</h1>
+    <p class="lead">Signed, timestamped move-in and move-out condition reports for Singapore landlords and tenants. Around that core sits a move-in checklist that connects new tenants to movers, internet and energy providers, and a video walkthrough service for people renting from overseas.</p>
+    <p class="typed">Built for <span id="typed"></span><span class="cursor">|</span></p>
+    <div class="cta"><a class="btn" href="#demo">Try the demo</a><a class="btn ghost" href="#market">See the numbers</a></div>
+    <div class="grid g4" style="margin-top:28px">
+      <div class="card stat"><div class="num" data-count="128784">128,784</div><div class="lbl">Rental contracts a year in Singapore (private and HDB, 2025)</div></div>
+      <div class="card stat"><div class="num" data-count="7.2" data-dec="1" data-prefix="S$" data-suffix="m">S$7.2m</div><div class="lbl">Serviceable revenue pool at full spend (TAM)</div></div>
+      <div class="card stat"><div class="num" data-count="336" data-prefix="S$" data-suffix="k">S$336k</div><div class="lbl">Year 5 revenue, base case (SOM)</div></div>
+      <div class="card stat"><div class="num">Year 2</div><div class="lbl">Base case turns operationally profitable</div></div>
+    </div>
+    <p class="note"><b>Read this first.</b> The core product is a lean, low-compliance business that one person can start, though Singapore alone is not a venture-scale outlier. Holding rental deposits is a possible later extension, covered in its own section, because it likely needs MAS licensing and is not in the base numbers. All figures are working assumptions for discussion, not audited forecasts or a formal valuation.</p>
+  </div>
+</header>
+<div class="ticker" aria-hidden="true"><div class="track"><span>Landlords</span><span>Tenants</span><span>Movers</span><span>Internet providers</span><span>Energy retailers</span><span>Cleaners</span><span>Mediators</span><span>Overseas newcomers</span><span>Landlords</span><span>Tenants</span><span>Movers</span><span>Internet providers</span><span>Energy retailers</span><span>Cleaners</span><span>Mediators</span><span>Overseas newcomers</span></div></div>
+
+
+<section id="problem">
+  <div class="wrap">
+    <h2>The problem</h2>
+    <p class="sub">Renting in Singapore still runs on WhatsApp photos, scattered PDFs and memory. When the tenancy ends, nobody can prove what the unit looked like at the start.</p>
+    <div class="grid g3">
+      <div class="card"><h3>Deposit disputes</h3><p>Move-out arguments over scratches, marks and fittings with no agreed starting record. Landlords lose money and tenants lose deposits unfairly.</p></div>
+      <div class="card"><h3>Scattered admin</h3><p>Inventory lists, meter readings, renewal dates and repair requests live in chat threads. Landlords who go direct (no agent) have no simple toolkit.</p></div>
+      <div class="card"><h3>A rough landing for newcomers</h3><p>New tenants, especially those arriving from overseas, must sort out movers, internet, electricity and cleaning without knowing who to trust. Many sign for a unit they have never seen.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <h2>Try it: the move-in report</h2>
+    <p class="sub">An illustrative mockup, not the final product. Tap each room to add a timestamped photo, then sign as both parties and watch the tenant checklist unlock.</p>
+    <div class="demo">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div><div class="ph-title">Move-in report</div><div class="ph-sub">Unit 12-04 &middot; Illustrative</div></div>
+          <div class="prog"><i id="prog"></i></div>
+          <div class="ph-sub" id="status" aria-live="polite">0 of 4 rooms photographed</div>
+          <button class="room" type="button"><span>Living room</span><span class="chip">Tap to photograph</span></button>
+          <button class="room" type="button"><span>Bedroom</span><span class="chip">Tap to photograph</span></button>
+          <button class="room" type="button"><span>Kitchen</span><span class="chip">Tap to photograph</span></button>
+          <button class="room" type="button"><span>Bathroom</span><span class="chip">Tap to photograph</span></button>
+          <div class="signrow">
+            <button class="sbtn" id="sign-l" type="button" disabled>Landlord sign</button>
+            <button class="sbtn" id="sign-t" type="button" disabled>Tenant sign</button>
+          </div>
+          <div class="locked" id="locked"><b>Report locked and timestamped</b><div class="ph-sub">Checklist unlocked. Opt in to offers:</div><div class="chips"><span>Movers</span><span>Internet</span><span>Energy</span><span>Cleaners</span></div></div>
+        </div>
+      </div>
+      <div>
+        <h3>How it feels</h3>
+        <ol class="steps-list">
+          <li>The landlord sets up the rooms once.</li>
+          <li>The tenant opens a link on their phone, with no app to install.</li>
+          <li>Every photo carries its own timestamp, and both parties sign.</li>
+          <li>The signed report becomes the baseline for the move-out comparison.</li>
+        </ol>
+        <div class="card" style="margin-top:18px">
+          <h3>Move-in versus move-out</h3>
+          <p>Drag the slider. The platform highlights what changed, so the conversation starts from evidence instead of memory.</p>
+          <div class="compare" id="cmp">
+            <div class="scene in"><span class="lab" style="left:10px">Move-in</span></div>
+            <div class="scene out"><span class="lab" style="right:10px">Move-out</span><div class="flag">Difference: wall mark</div><div class="scuff"></div></div>
+            <div class="handle"></div>
+            <input class="cmp" type="range" min="0" max="100" value="50" aria-label="Compare move-in and move-out">
+          </div>
+        </div>
+        <button class="btn ghost" id="reset" type="button" style="margin-top:14px">Reset demo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="sub">Three connected flows. The first is the core product, the second is where partner revenue comes from, and the third is a premium service for overseas tenants.</p>
+
+    <div class="flowtitle">Flow 1: The condition report (core product)</div>
+    <div class="flow">
+      <div class="step"><b>Landlord adds property</b><span>Rooms, inventory, meter readings</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Tenant joins via link</b><span>No app download, free for tenants</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Move-in report signed</b><span>Timestamped photos, both parties sign</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Tenancy period</b><span>Reminders, repair log</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Move-out report</b><span>Same rooms, side-by-side comparison</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Deposit returned</b><span>No differences found</span></div>
+        <div class="step bad"><b>Evidence pack (PDF)</b><span>Differences found</span></div>
+      </div>
+    </div>
+
+    <div class="flowtitle">Flow 2: Tenant checklist and partner services (advertising and referrals)</div>
+    <div class="flow" style="max-width:760px">
+      <div class="step"><b>Move-in report signed</b></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Smart move-in checklist</b><span>Tailored to the property, tenant opts in to offers</span></div>
+      <div class="down">&darr;</div>
+      <div class="fan">
+        <div class="step good"><b>Movers</b><span>Quotes, booking</span></div>
+        <div class="step good"><b>Energy retailer</b><span>Plan switch</span></div>
+        <div class="step good"><b>Internet (ISP)</b><span>Install booking</span></div>
+        <div class="step good"><b>Cleaners</b><span>Move-in clean</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Referral and advertising revenue</b><span>Paid per lead or per booking</span></div>
+    </div>
+
+    <div class="flowtitle">Flow 3: Overseas video walkthrough (premium service)</div>
+    <div class="flow">
+      <div class="step"><b>Overseas tenant books a slot</b><span>Pays a per-tour fee</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Local host visits the property</b><span>Founder or a vetted freelancer</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Live video tour</b><span>Condition, fittings, neighbourhood</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Report and partner offers sent</b><span>Photos, notes, move-in deals</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Tenant proceeds</b><span>Enters Flow 1 and Flow 2</span></div>
+        <div class="step"><b>Tenant passes</b><span>Tour fee still earned</span></div>
+      </div>
+    </div>
+    <p class="note"><b>Scope guard.</b> The walkthrough is inspection and viewing only. It does not negotiate rent, advise on lease terms or help close a lease, which keeps it clear of property agency activity regulated by the CEA.</p>
+
+    <div class="flowtitle">Flow 4: Deposit holding and dispute management (optional, needs licence review)</div>
+    <div class="flow" style="max-width:760px">
+      <div class="step"><b>Tenant pays the deposit into a protected account</b><span>Held by a licensed partner, never spent by Rentnito</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Tenancy runs, move-out report compared</b><span>Uses the signed move-in report as the baseline</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>No differences</b><span>Full deposit released to the tenant</span></div>
+        <div class="step hl"><b>Differences found</b><span>Landlord proposes a deduction with evidence</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Tenant accepts</b><span>Agreed amount to landlord, rest returned</span></div>
+        <div class="step bad"><b>Tenant disputes</b><span>Undisputed part released, disputed part stays held</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Negotiation window with the evidence pack</b><span>Fixed number of days, structured offers on the platform</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Settlement signed</b><span>Funds released exactly as agreed</span></div>
+        <div class="step"><b>Still unresolved</b><span>Mediation or Small Claims Tribunals, funds released on settlement or order</span></div>
+      </div>
+    </div>
+    <p class="note"><b>Design rule.</b> Rentnito never decides who is right. It supplies the evidence, a fixed process and the holding mechanism, and releases money only on agreement or a formal outcome. Acting as judge would add legal exposure and destroy trust with whichever side loses.</p>
+
+    <div class="flowtitle">Flow 5: What happens when there is a dispute (escalation ladder)</div>
+    <div class="flow" style="max-width:760px">
+      <div class="step"><b>Dispute raised</b><span>Either party flags a difference from the move-in report</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Tier 1: Structured negotiation (free)</b><span>Side-by-side photos, itemised claim, counter-offers, fixed time window</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Resolved</b><span>Both sign, funds released as agreed</span></div>
+        <div class="step"><b>Not resolved</b><span>Move to the next tier</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Tier 2: AI-assisted mediation (low cost)</b><span>Both opt in. The AI reads the evidence and proposes a fair split, which is non-binding</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Both accept</b><span>Signed settlement, funds released</span></div>
+        <div class="step"><b>Either rejects, or high value</b><span>Move to the next tier</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Tier 3: Professional mediator (paid)</b><span>Human mediator from partner panel, evidence pack handed over, fee per session</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Settlement</b><span>Signed agreement, funds released</span></div>
+        <div class="step"><b>No agreement</b><span>Move to the next tier</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="step bad"><b>Tier 4: Small Claims Tribunals</b><span>Evidence pack exported for filing. Funds released only on a tribunal order or later settlement</span></div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="card"><h3>Why start with AI mediation</h3><ul class="tight"><li>Most deposit disputes are small and fact-based, so a documented comparison settles many of them.</li><li>It is fast, available at any hour and cheap enough to use on a S$300 deduction.</li><li>It lowers the emotional temperature, because both sides see the same evidence and a neutral proposal.</li></ul></div>
+      <div class="card"><h3>Guardrails for the AI tier</h3><ul class="tight"><li>Facilitates and proposes only. It never forces an outcome and never gives legal advice.</li><li>Both parties must agree to use it and can leave at any time.</li><li>Higher-value or complex cases default to a human mediator, with a starting threshold (for example S$1,000) to be tested.</li><li>Every settlement is signed by both parties before any money moves.</li></ul></div>
+      <div class="card"><h3>Why keep a human option</h3><ul class="tight"><li>Some disputes turn on trust, intent or unrecorded facts that photos cannot show.</li><li>A neutral person can handle strong emotion and large sums better than software.</li><li>Referral fees from a mediator panel add a small revenue line without adding staff.</li></ul></div>
+      <div class="card"><h3>What still needs checking</h3><ul class="tight"><li>Which mediators or mediation providers will join a referral panel, and on what terms.</li><li>Whether the platform's AI summary could be treated as a regulated service. Take Singapore legal advice.</li><li>PDPA handling of photos and statements used in a dispute.</li></ul></div>
+    </div>
+    <p class="note"><b>Small Claims Tribunals.</b> The Singapore Courts site says the Tribunals hear claims up to S$30,000, including residential tenancy disputes where the term is two years or less. Longer tenancies or larger sums go elsewhere, so check eligibility case by case.</p>
+  </div>
+</section>
+
+<section id="market">
+  <div class="wrap">
+    <h2>Market size: TAM, SAM and SOM (Singapore)</h2>
+    <p class="sub">Sized bottom-up from the number of rental contracts in 2025 and the revenue we expect to earn per contract.</p>
+    <div class="market">
+      <div class="rings" role="img" aria-label="Nested circles showing TAM of S$7.2 million, SAM of S$2.9 million and SOM of S$336 thousand">
+        <div class="ring r1"><div><b>TAM</b>S$7.2m</div></div>
+        <div class="ring r2"><div><b>SAM</b>S$2.9m</div></div>
+        <div class="ring r3"><div><b>SOM</b>S$336k</div></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:12px"><span class="pill">TAM</span><h3 style="margin-top:6px">S$7.2m a year</h3><p>128,784 rental contracts a year (89,376 private and 39,408 HDB approvals in 2025) multiplied by S$56 revenue per contract at maturity (S$29 core, S$21 partner referrals, S$6 walkthroughs).</p></div>
+        <div class="card" style="margin-bottom:12px"><span class="pill">SAM</span><h3 style="margin-top:6px">S$2.9m a year</h3><p>Assumes 40% of contracts (about 51,500) involve a landlord or tenant who would use a digital record tool, which excludes many fully agent-managed and informal tenancies. This 40% is a guess to validate in interviews.</p></div>
+        <div class="card"><span class="pill">SOM</span><h3 style="margin-top:6px">S$336k a year by Year 5 (base case)</h3><p>6,000 paid tenancies, which is about 11.6% of the serviceable contracts and 4.7% of all contracts.</p></div>
+      </div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card"><h3>Why the market is supportive</h3><ul class="tight"><li>Private rental contracts were up 3.4% in 2025.</li><li>HDB rental approvals were up 7.5% in 2025, with about 58,800 flats rented out at end 2025.</li><li>Non-residents number about 1.91 million, a steady stream of newcomers who need to settle in.</li></ul></div>
+      <div class="card"><h3>What the sizing leaves out</h3><ul class="tight"><li>Room rentals and sub-letting.</li><li>Landlord-direct listings and agreement templates (later phase).</li><li>Co-living operators and dormitories.</li><li>Any market outside Singapore.</li></ul></div>
+      <div class="card"><h3>Honest caveats</h3><ul class="tight"><li>Private contract counts include renewals, so true move-ins are fewer than the headline number.</li><li>Not every contract needs a report, and many will be done once only.</li><li>Willingness to pay is untested until we pre-sell.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="model">
+  <div class="wrap">
+    <h2>Revenue model and unit economics</h2>
+    <p class="sub">Three revenue streams, each tied to a moment in the tenancy. Prices and conversion rates are assumptions to test.</p>
+    <div class="scroll">
+    <table>
+      <thead><tr><th>Stream</th><th>Who pays</th><th>Price assumption</th><th>Gross margin</th></tr></thead>
+      <tbody>
+        <tr><td>Landlord reports and plans</td><td>Landlords</td><td>S$9.90 per report or about S$49 a year (blended S$29 per tenancy)</td><td>About 93%</td></tr>
+        <tr><td>Partner referrals and ads</td><td>Movers, ISPs, retailers, cleaners</td><td>About S$60 per booking, with around 35% of tenancies booking at maturity (S$21 per tenancy)</td><td>About 97%</td></tr>
+        <tr><td>Overseas video walkthrough</td><td>Overseas tenants</td><td>About S$80 per tour, with around 7.5% of tenancies taking one (S$6 per tenancy)</td><td>About 38% after host payout</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note"><b>Tenants stay free.</b> Every report needs two parties, so a free tenant side drives adoption and every report sent to a counterparty acts as a free advertisement.</p>
+  </div>
+</section>
+
+<section id="deposit">
+  <div class="wrap">
+    <h2>Option: holding the rental deposit</h2>
+    <p class="sub">Tenants usually pay about a month of rent as a deposit, so the money sitting in a deposit account could earn interest. It is a tempting extra revenue line, but it is also where the regulatory burden jumps. This section is kept out of the base forecast on purpose.</p>
+    <p class="note"><b>Bottom line.</b> Holding other people's deposits probably needs MAS licensing, and investing them in securities probably needs more. The realistic route is to hold nothing at first, or to let a licensed bank or payment partner hold the money while Rentnito runs the process. I am not a lawyer, and the official pages I could read did not settle the escrow question, so get written Singapore legal advice before building anything that touches the money.</p>
+
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card"><span class="pill">Path A</span><h3 style="margin-top:6px">Do not hold deposits</h3><p>Deposits stay between landlord and tenant. Rentnito provides the signed reports, the evidence pack and the dispute ladder. Lowest compliance and the right starting point.</p></div>
+      <div class="card"><span class="pill">Path B</span><h3 style="margin-top:6px">Licensed partner holds the money</h3><p>A licensed bank or payment institution holds the deposit. Rentnito runs the workflow and earns a fee or revenue share. Lower cost than a licence of your own, but the structure still needs legal advice.</p></div>
+      <div class="card"><span class="pill">Path C</span><h3 style="margin-top:6px">Hold the money under your own licence</h3><p>Most control and the most upside, with capital, safeguarding, audit and compliance costs. Only worth it at a scale this plan does not reach on Singapore alone.</p></div>
+    </div>
+
+    <h3 style="margin-top:28px">Which licences may apply</h3>
+    <div class="scroll">
+    <table class="tl">
+      <thead><tr><th>Regime</th><th>Why it may apply</th><th>What I could confirm</th></tr></thead>
+      <tbody>
+        <tr><td>Payment Services Act (MAS)</td><td>Receiving money from one party and paying it to another in Singapore may count as domestic money transfer. Running accounts that hold the funds may count as account issuance.</td><td>MAS lists both services but its page does not mention escrow or deposits. The MAS FAQ raises escrow without a clear answer I could read. It does say an intermediary that merely passes money on is not automatically regulated. Unresolved.</td></tr>
+        <tr><td>Payment institution classes</td><td>Standard institution (volume ceilings) or major institution (no ceilings, stricter duties).</td><td>A secondary summary gives base capital of S$100,000 for standard and S$250,000 for major, plus a security deposit and safeguarding duties for major. Confirm every figure with MAS.</td></tr>
+        <tr><td>Securities and Futures Act</td><td>Investing customers' money in securities for them is managing a portfolio of capital markets products, which is licensed fund management.</td><td>Described as licensed in a law firm summary. Confirm the exact licence and any exemptions with counsel.</td></tr>
+        <tr><td>Estate agency rules (CEA)</td><td>Negotiating or closing leases for others is regulated agency work.</td><td>Avoided by keeping the walkthrough to inspection only and not touching lease terms.</td></tr>
+        <tr><td>PDPA</td><td>Condition photos and dispute statements are personal data.</td><td>Applies whatever path is chosen. Collect the minimum and obtain consent.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 style="margin-top:28px">Investing the deposits</h3>
+    <div class="grid g2">
+      <div class="card"><h3>Why I would not model it</h3><ul class="tight"><li>The money belongs to the tenant or landlord and must be returned on time. Any investment loss would leave a gap that Rentnito would have to fill.</li><li>Managing customers' investments is itself a licensed activity under the Securities and Futures Act.</li><li>Payment institutions are expected to protect customer money. The MAS FAQ stops licensed e-money issuers from on-lending or investing customer funds, and I could not confirm what applies to other models.</li></ul></div>
+      <div class="card"><h3>The realistic version</h3><ul class="tight"><li>Interest on a bank balance, held by a licensed partner, with the share paid to Rentnito set out in the contract and disclosed to users.</li><li>Possibly a fee per deposit instead of any interest, which is simpler and easier to explain.</li><li>No securities, no leverage, no use of the money for Rentnito's own costs.</li></ul></div>
+    </div>
+
+    <h3 style="margin-top:28px">What the float could be worth</h3>
+    <p class="sub" style="margin-bottom:12px">Move the sliders to test it. It uses Year 5 paid tenancies from the scenario selected in the forecast below. The yield and cost figures are placeholders, not market rates or quotes.</p>
+    <div class="card" id="depcalc">
+      <div class="grid g2">
+        <label class="ctl">Share of tenancies using deposit holding: <b id="o-share"></b><input type="range" id="i-share" min="5" max="100" step="5" value="25"></label>
+        <label class="ctl">Average deposit: <b id="o-dep"></b><input type="range" id="i-dep" min="1000" max="8000" step="250" value="3500"></label>
+        <label class="ctl">Net yield kept by Rentnito: <b id="o-yield"></b><input type="range" id="i-yield" min="0" max="4" step="0.25" value="1.5"></label>
+        <label class="ctl">Yearly licence, audit and compliance cost: <b id="o-cost"></b><input type="range" id="i-cost" min="0" max="300" step="10" value="120"></label>
+      </div>
+      <div class="grid g3" id="dep-out" style="margin-top:14px"></div>
+    </div>
+    <p class="note"><b>Read the result carefully.</b> At Singapore-only scale the float income can fail to cover the cost of running a licensed escrow. That is why Path A or Path B is the better start, and Path C is a decision for later once volume is proven.</p>
+  </div>
+</section>
+
+<section id="forecast">
+  <div class="wrap">
+    <h2>Five-year revenue forecast</h2>
+    <p class="sub">Year 1 starts at public launch (target March 2027). Switch between scenarios to see how the numbers move.</p>
+    <noscript><p class="note">Turn on JavaScript to view the interactive forecast.</p></noscript>
+    <div class="seg" role="group" aria-label="Scenario">
+      <button type="button" data-s="cons" aria-pressed="false">Conservative</button>
+      <button type="button" data-s="base" aria-pressed="true">Base</button>
+      <button type="button" data-s="opt" aria-pressed="false">Optimistic</button>
+    </div>
+    <div class="grid g3" id="kpis"></div>
+    <div class="card" style="margin-top:16px">
+      <h3>Revenue by year</h3>
+      <div class="bars" id="bars" role="img" aria-label="Stacked bar chart of yearly revenue by stream"></div>
+      <div class="legend"><span><i class="s-core"></i>Landlord reports and plans</span><span><i class="s-partner"></i>Partner referrals</span><span><i class="s-tour"></i>Video walkthroughs</span></div>
+    </div>
+    <div class="card scroll" style="margin-top:16px">
+      <table id="ftable"></table>
+    </div>
+    <p class="note"><b>How to read this.</b> Contribution is revenue after payment fees, referral costs and walkthrough host payouts. Operating costs cover hosting, tools, legal, marketing and part-time contractors, and exclude any founder salary. Scenarios differ mainly in how many paid tenancies are won each year.</p>
+  </div>
+</section>
+
+<section id="valuation">
+  <div class="wrap">
+    <h2>Indicative valuation</h2>
+    <p class="sub">A rough range to frame equity conversations, using revenue multiples for small software and marketplace businesses, then discounting the future value back to today for execution risk.</p>
+    <div class="grid g3" id="vals"></div>
+    <div class="note"><b>Method.</b> Future value = Year 3 or Year 5 revenue multiplied by 2x (low) to 4x (high). Value today = Year 5 value discounted at 60% a year (low) and 40% a year (high) over five years, reflecting that this is pre-launch and unproven. These are indicative numbers for discussion and not a professional valuation. The honest read is that Singapore alone supports a small, profitable business, so any larger outcome depends on the upside levers below.</div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3>Upside levers (not in the numbers)</h3><ul class="tight"><li>Room rentals, co-living and dormitory operators.</li><li>Landlord-direct listings and tenancy agreement templates, once CEA advice is in hand.</li><li>Expansion to other markets with the same tenancy pain points.</li><li>Premium bundles for corporate relocation and employers.</li></ul></div>
+      <div class="card"><h3>What would raise the valuation</h3><ul class="tight"><li>Evidence landlords pay (pre-sales and renewals).</li><li>Signed partner agreements with movers and ISPs.</li><li>A repeatable low-cost acquisition channel.</li><li>Report volume that proves two-sided network effects.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="canvas">
+  <div class="wrap">
+    <h2>Business model canvas</h2>
+    <p class="sub">One page view of how Rentnito creates, delivers and captures value.</p>
+    <div class="canvas">
+      <div class="card" style="grid-row:span 2"><h3>Key partners</h3><ul><li>Moving companies</li><li>Internet providers</li><li>Energy retailers</li><li>Cleaning services</li><li>Vetted local hosts</li><li>Licensed bank or payment partner</li><li>Mediator panel</li></ul></div>
+      <div class="card"><h3>Key activities</h3><ul><li>Build and run the platform</li><li>Onboard partners</li><li>Content and SEO</li><li>Coordinate walkthrough hosts</li></ul></div>
+      <div class="card" style="grid-row:span 2"><h3>Value propositions</h3><ul><li>Landlords: protect the deposit and the asset</li><li>Tenants: a fair, shared record, free</li><li>Partners: high-intent leads at move-in</li><li>Overseas tenants: see the unit before arriving</li></ul></div>
+      <div class="card"><h3>Customer relationships</h3><ul><li>Self-serve product</li><li>Email reminders</li><li>Concierge for video tours</li></ul></div>
+      <div class="card" style="grid-row:span 2"><h3>Customer segments</h3><ul><li>Direct landlords (primary payer)</li><li>Tenants (free)</li><li>Overseas and expat tenants</li><li>Service partners (advertisers)</li></ul></div>
+      <div class="card"><h3>Key resources</h3><ul><li>Software platform</li><li>Partner network</li><li>Brand and trust</li><li>Anonymised report data</li></ul></div>
+      <div class="card"><h3>Channels</h3><ul><li>SEO guides</li><li>Reddit and Facebook groups</li><li>Shareable report links</li><li>Partner referrals</li></ul></div>
+      <div class="card w"><h3>Cost structure</h3><ul><li>Hosting, storage and tools</li><li>Payment processing fees</li><li>Marketing and content</li><li>Legal and PDPA compliance</li><li>Walkthrough host payouts</li><li>Licence, legal and audit costs if deposits are held</li></ul></div>
+      <div class="card w"><h3>Revenue streams</h3><ul><li>Per-report fee (about S$9.90) and landlord plan (about S$49 a year)</li><li>Partner referral and advertising fees</li><li>Overseas video walkthrough fee (about S$80)</li><li>Dispute fees: AI mediation and mediator referrals (not in base case)</li><li>Deposit float or handling fee (licence-dependent, not in base case)</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <h2>Milestones and timeline</h2>
+    <p class="sub">The plan is staged so that money is only spent once each assumption has been tested.</p>
+    <ol class="timeline">
+      <li><div class="when">Oct to Nov 2026: Validate</div><span class="goal">Goal: 100 waitlist sign-ups, 5 landlords willing to pre-pay</span><p>20 landlord and tenant interviews, competitor scan, landing page with waitlist, CEA and PDPA check, own entity and accounts set up. Get written Singapore legal advice on the deposit question (Payment Services Act and Securities and Futures Act) before designing anything that touches money.</p></li>
+      <li><div class="when">Dec 2026 to Feb 2027: Build the MVP</div><span class="goal">Goal: working product in 6 to 8 weeks</span><p>Photo condition reports, link-based sign-off, PDF export, inventory and meter log, move-in checklist version 1.</p></li>
+      <li><div class="when">Mar 2027: Public launch (Singapore)</div><span class="goal">Goal: first 100 landlords on the free tier</span><p>Free tier live, SEO guides published, community outreach starts. Year 1 begins.</p></li>
+      <li><div class="when">Apr to Aug 2027: Monetise</div><span class="goal">Goal: first paying landlords and 4 partner pilots</span><p>Payments live, 2 movers, 1 ISP and 1 cleaning partner piloted with tracked referrals.</p></li>
+      <li><div class="when">Year 1 end (Feb 2028)</div><span class="goal">Goal: about 250 paid tenancies, about S$9k revenue</span><p>Repair log and rent reminders added. Partner marketplace expanded.</p></li>
+      <li><div class="when">Year 2 (Mar 2028 to Feb 2029)</div><span class="goal">Goal: about 900 paid tenancies, operating breakeven</span><p>Pilot the overseas video walkthrough with vetted freelancers. Add energy retailers as partners. Launch AI-assisted mediation and a small mediator panel on top of the free negotiation tier.</p></li>
+      <li><div class="when">Year 3 (to Feb 2030)</div><span class="goal">Goal: about 2,200 paid tenancies, about S$123k revenue</span><p>Consider landlord-direct listings and agreement templates after CEA advice. Explore room rental and co-living segments. Decision gate on deposits: stay out, use a licensed partner, or apply for a licence, based on volume and legal advice.</p></li>
+      <li><div class="when">Years 4 to 5</div><span class="goal">Goal: 4,000 to 6,000 paid tenancies</span><p>Decide whether to deepen Singapore, add adjacent segments or take the model to a second market.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="risks">
+  <div class="wrap">
+    <h2>Go-to-market, risks and compliance</h2>
+    <div class="grid g3" style="margin-top:14px">
+      <div class="card"><h3>Go-to-market (near zero budget)</h3><ul class="tight"><li>Search content: how to get your deposit back, move-out checklist.</li><li>Reddit, Facebook landlord and tenant groups, HardwareZone.</li><li>Every shared report advertises the product to the other party.</li><li>Partnerships with small agents and inspection services later.</li></ul></div>
+      <div class="card"><h3>Key risks</h3><ul class="tight"><li>Willingness to pay is untested. Mitigation: pre-sell before building much.</li><li>Cold start on the tenant side. Mitigation: free tier and link-based sharing.</li><li>Rently already runs a SingPass-verified, deposit-free rental platform in Singapore (launched January 2024). It is a fuller marketplace, so Rentnito must stay lighter and cheaper. A full competitor scan is still to do.</li><li>Deposit holding likely needs MAS licensing. Start with Path A or B.</li><li>Walkthroughs do not scale without hosts. Mitigation: test only after demand exists.</li></ul></div>
+      <div class="card"><h3>Compliance, kept light</h3><ul class="tight"><li>Positioned as record keeping, not legal advice or agency.</li><li>PDPA applies to photos and personal data. Collect minimal data, no NRIC.</li><li>Tenant consent before any detail is shared with a partner (opt-in).</li><li>CEA guidance before listings or agreements.</li><li>Legal advice on MAS licensing before touching any deposit.</li><li>AI mediation presented as facilitation, never as legal advice.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <h2>Looking for collaborators</h2>
+    <p class="sub">Rentnito is currently run by a solo Singapore-based founder. The aim is to find a small number of people who can speed this up.</p>
+    <div class="grid g3">
+      <div class="card"><h3>Partnerships lead</h3><p>Relationships with movers, ISPs, energy retailers and cleaners, and the commercial terms for referrals.</p></div>
+      <div class="card"><h3>Growth and content</h3><p>SEO, community outreach and landlord acquisition on a very small budget.</p></div>
+      <div class="card"><h3>Design and front end</h3><p>A friendly mobile-first reporting experience that works with no app download.</p></div>
+    </div>
+    <p style="color:var(--muted);margin-top:16px">Open to equity, revenue share or milestone-based arrangements, to be discussed with the right person.</p>
+    <a class="btn" id="contact" href="#" hidden>Get in touch</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Sources.</b> Private rental contracts for 2025 (89,376) from URA data as reported by <a href="https://edgeprop.sg/property-news/singapore-private-home-prices-modest-06-4q2025-while-rents-dip-05">EdgeProp</a>. HDB approved rental applications for 2025 (39,408) and flats rented out (58,775 at end 2025) from HDB data as reported by <a href="https://www.99.co/singapore/insider/hdb-ura-q42025-statistics/">99.co</a>. Non-resident population (about 1.91 million, June 2025) from <a href="https://www.strategygroup.gov.sg/files/population_in_brief_2025.pdf">Population in Brief 2025</a>. Payment services categories from the <a href="https://www.mas.gov.sg/regulation/payments/licensing-for-payment-service-providers/types-of-payment-services">MAS page on types of payment services</a> and the <a href="https://www.mas.gov.sg/-/media/MAS/FAQ/Payment-Services-Act-FAQ-4-October-2019.pdf">MAS Payment Services Act FAQ</a>. Fund management as a licensed activity from a <a href="https://resourcehub.bakermckenzie.com/en/resources/global-financial-services-regulatory-guide/asia-pacific/singapore/topics/what-types-of-activities-require-a-license-in-your-jurisdiction">Baker McKenzie regulatory guide</a>. Small Claims Tribunals scope from the <a href="https://www.judiciary.gov.sg/civil/small-claims">Singapore Courts</a>. Rently from <a href="https://fintechnews.sg/83678/proptech/rently-debuts-in-singapore-offering-deposit-free-and-singpass-verified-rentals/">Fintech News Singapore</a>.</p>
+    <p><b>Licensing note.</b> The licensing summary is a research starting point drawn from public pages and secondary sources. It is not legal advice and the escrow question is unresolved. Confirm everything with a Singapore lawyer or MAS before acting.</p>
+    <p><b>Disclaimer.</b> This document contains forward-looking assumptions and is for discussion only. It is not investment, legal or financial advice, and nothing here is an offer to sell or a solicitation to buy securities.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var CONTACT = ""; /* add a mailto: link or contact URL here to show the Get in touch button */
+  var c = document.getElementById('contact');
+  if (CONTACT) { c.href = CONTACT; c.hidden = false; }
+
+  var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var hasIO = 'IntersectionObserver' in window;
+  var RAF = window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function(f){ return setTimeout(function(){ f(Date.now()); }, 16); };
+  function $(s, r){ return (r || document).querySelector(s); }
+  function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function onView(el, fn, once, threshold){
+    if (!hasIO || reduced) { fn(el); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { fn(e.target); if (once !== false) io.unobserve(e.target); }
+      });
+    }, { threshold: threshold || 0.18 });
+    io.observe(el);
+  }
+
+  /* ---------- Model ---------- */
+  var core = 29, coreNet = 27, partnerMargin = 0.97, tourMargin = 0.38;
+  var partner = [8, 15, 21, 21, 21];
+  var tour = [0, 3, 6, 6, 6];
+  var SC = {
+    cons: { t: [120, 400, 1000, 1700, 2500], opex: [10, 20, 40, 60, 90] },
+    base: { t: [250, 900, 2200, 4000, 6000], opex: [12, 25, 55, 95, 150] },
+    opt:  { t: [400, 1600, 4000, 7500, 11000], opex: [15, 35, 80, 140, 230] }
+  };
+  var curT5 = 6000;
+
+  function money(n){
+    var r = Math.round(n);
+    return (r < 0 ? '-S$' : 'S$') + Math.abs(r).toLocaleString('en-SG');
+  }
+  function k(n){
+    var r = Math.round(n / 1000);
+    return (r < 0 ? '-S$' : 'S$') + Math.abs(r).toLocaleString('en-SG') + 'k';
+  }
+  function m2(n){ return 'S$' + (n / 1e6).toFixed(2) + 'm'; }
+  function model(key){
+    var s = SC[key], out = [];
+    for (var i = 0; i < 5; i++){
+      var t = s.t[i];
+      var rc = t * core, rp = t * partner[i], rt = t * tour[i];
+      var contrib = t * (coreNet + partner[i] * partnerMargin + tour[i] * tourMargin);
+      out.push({ y: i + 1, t: t, rc: rc, rp: rp, rt: rt, rev: rc + rp + rt,
+                 contrib: contrib, opex: s.opex[i] * 1000, op: contrib - s.opex[i] * 1000 });
+    }
+    return out;
+  }
+
+  function renderDep(){
+    var g = function(id){ return document.getElementById(id); };
+    var share = +g('i-share').value, dep = +g('i-dep').value;
+    var yl = +g('i-yield').value, cost = +g('i-cost').value;
+    g('o-share').textContent = share + '%';
+    g('o-dep').textContent = money(dep);
+    g('o-yield').textContent = yl.toFixed(2) + '%';
+    g('o-cost').textContent = money(cost * 1000);
+    var esc = curT5 * share / 100;
+    var bal = esc * dep;
+    var gross = bal * yl / 100;
+    var net = gross - cost * 1000;
+    var be = yl > 0 ? (cost * 1000) / (yl / 100) / dep : null;
+    g('dep-out').innerHTML =
+      '<div class="card stat"><div class="num">' + Math.round(esc).toLocaleString('en-SG') + '</div><div class="lbl">Tenancies using deposit holding in Year 5</div></div>' +
+      '<div class="card stat"><div class="num">' + m2(bal) + '</div><div class="lbl">Average balance held</div></div>' +
+      '<div class="card stat"><div class="num">' + money(gross) + '</div><div class="lbl">Gross float income a year</div></div>' +
+      '<div class="card stat"><div class="num ' + (net >= 0 ? 'pos' : 'neg') + '">' + money(net) + '</div><div class="lbl">Net after licence and compliance cost</div></div>' +
+      '<div class="card stat"><div class="num">' + (be === null ? 'Never' : Math.round(be).toLocaleString('en-SG')) + '</div><div class="lbl">Tenancies needed to break even on that cost</div></div>';
+  }
+
+  function render(key){
+    var m = model(key);
+    curT5 = m[4].t;
+    renderDep();
+    var y3 = m[2].rev, y5 = m[4].rev;
+    var be = null;
+    for (var i = 0; i < 5; i++){ if (m[i].op > 0){ be = m[i].y; break; } }
+
+    document.getElementById('kpis').innerHTML =
+      '<div class="card stat"><div class="num">' + m[4].t.toLocaleString('en-SG') + '</div><div class="lbl">Paid tenancies in Year 5</div></div>' +
+      '<div class="card stat"><div class="num">' + k(y5) + '</div><div class="lbl">Year 5 revenue</div></div>' +
+      '<div class="card stat"><div class="num">' + (be ? 'Year ' + be : 'After Year 5') + '</div><div class="lbl">First year with an operating profit</div></div>';
+
+    var max = 0; m.forEach(function(r){ if (r.rev > max) max = r.rev; });
+    var bars = '';
+    m.forEach(function(r){
+      var h = (r.rev / max) * 150;
+      var hc = r.rc / r.rev * h, hp = r.rp / r.rev * h, ht = r.rt / r.rev * h;
+      bars += '<div class="bar"><div class="v">' + k(r.rev) + '</div>' +
+        '<div class="stack" data-h="' + h.toFixed(1) + '" style="height:0">' +
+        (ht > 0 ? '<div class="s-tour" data-h="' + ht.toFixed(1) + '" style="height:0"></div>' : '') +
+        '<div class="s-partner" data-h="' + hp.toFixed(1) + '" style="height:0"></div>' +
+        '<div class="s-core" data-h="' + hc.toFixed(1) + '" style="height:0"></div></div>' +
+        '<div class="y">Year ' + r.y + '</div></div>';
+    });
+    document.getElementById('bars').innerHTML = bars;
+    var nodes = $$('#bars [data-h]');
+    var raf = window.requestAnimationFrame || function(f){ return setTimeout(f, 16); };
+    raf(function(){ raf(function(){
+      nodes.forEach(function(n){ n.style.height = n.getAttribute('data-h') + 'px'; });
+    }); });
+
+    function row(label, fn, cls){
+      var h = '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + label + '</td>';
+      m.forEach(function(r){ h += '<td>' + fn(r) + '</td>'; });
+      return h + '</tr>';
+    }
+    var t = '<thead><tr><th></th>';
+    m.forEach(function(r){ t += '<th>Year ' + r.y + '</th>'; });
+    t += '</tr></thead><tbody>';
+    t += row('Paid tenancies', function(r){ return r.t.toLocaleString('en-SG'); });
+    t += row('Landlord reports and plans', function(r){ return money(r.rc); });
+    t += row('Partner referrals', function(r){ return money(r.rp); });
+    t += row('Video walkthroughs', function(r){ return money(r.rt); });
+    t += row('Total revenue', function(r){ return money(r.rev); }, 'total');
+    t += row('Contribution after direct costs', function(r){ return money(r.contrib); });
+    t += row('Operating costs', function(r){ return money(r.opex); });
+    t += row('Operating result', function(r){
+      return '<span class="' + (r.op >= 0 ? 'pos' : 'neg') + '">' + money(r.op) + '</span>';
+    }, 'total');
+    t += '</tbody>';
+    document.getElementById('ftable').innerHTML = t;
+
+    var todayLow = (2 * y5) / Math.pow(1.6, 5);
+    var todayHigh = (4 * y5) / Math.pow(1.4, 5);
+    document.getElementById('vals').innerHTML =
+      '<div class="card stat"><div class="lbl">Value in Year 3 (2x to 4x revenue)</div><div class="num">' + k(2 * y3) + ' to ' + k(4 * y3) + '</div></div>' +
+      '<div class="card stat"><div class="lbl">Value in Year 5 (2x to 4x revenue)</div><div class="num">' + k(2 * y5) + ' to ' + k(4 * y5) + '</div></div>' +
+      '<div class="card stat"><div class="lbl">Risk-adjusted value today</div><div class="num">' + k(todayLow) + ' to ' + k(todayHigh) + '</div></div>';
+    prepCards(document.getElementById('kpis'));
+    prepCards(document.getElementById('vals'));
+    prepCards(document.getElementById('dep-out'));
+  }
+
+  /* ---------- Scroll reveal and card spotlight ---------- */
+  function revealNow(el){
+    el.classList.add('in');
+    setTimeout(function(){ el.style.transitionDelay = ''; }, 1100);
+  }
+  function prepCards(root){
+    /* dynamic cards (rebuilt on scenario change) just fade in */
+    $$('.card', root).forEach(function(el){ el.classList.add('reveal'); requestAnimationFrameSafe(function(){ el.classList.add('in'); }); });
+  }
+  function requestAnimationFrameSafe(f){
+    var raf = window.requestAnimationFrame || function(g){ return setTimeout(g, 16); };
+    raf(function(){ raf(f); });
+  }
+  var revealSel = 'section .wrap > h2, section .wrap > .sub, section .wrap > h3, .flowtitle, .note, .timeline li, .card, .scroll, .ticker';
+  $$(revealSel).forEach(function(el){
+    if (el.closest('#kpis, #vals, #dep-out')) return;
+    el.classList.add('reveal');
+    var sibs = el.parentNode ? Array.prototype.indexOf.call(el.parentNode.children, el) : 0;
+    el.style.transitionDelay = (Math.min(sibs, 8) * 70) + 'ms';
+    onView(el, revealNow, true, 0.1);
+  });
+  document.addEventListener('mousemove', function(e){
+    var card = e.target && e.target.closest ? e.target.closest('.card') : null;
+    if (!card) return;
+    var r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  /* ---------- Count-up hero stats ---------- */
+  $$('.num[data-count]').forEach(function(el){
+    var to = parseFloat(el.getAttribute('data-count'));
+    var dec = +(el.getAttribute('data-dec') || 0);
+    var pre = el.getAttribute('data-prefix') || '';
+    var suf = el.getAttribute('data-suffix') || '';
+    function fmt(v){ return pre + (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-SG')) + suf; }
+    el.textContent = fmt(reduced ? to : 0);
+    onView(el, function(){
+      if (reduced) { el.textContent = fmt(to); return; }
+      var t0 = null, dur = 1500;
+      function step(ts){
+        if (!t0) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(to * e);
+        if (p < 1) RAF(step); else el.textContent = fmt(to);
+      }
+      RAF(step);
+    }, true, 0.4);
+  });
+
+  /* ---------- Typed line ---------- */
+  var typedEl = document.getElementById('typed');
+  var phrases = [
+    'landlords who want their deposit protected.',
+    'tenants who want a fair, shared record.',
+    'newcomers moving to Singapore from overseas.',
+    'movers, ISPs and retailers who want move-in leads.'
+  ];
+  if (typedEl) {
+    if (reduced) { typedEl.textContent = phrases[0]; }
+    else {
+      var pi = 0, ci = 0, del = false;
+      (function tick(){
+        var s = phrases[pi];
+        ci += del ? -1 : 1;
+        typedEl.textContent = s.slice(0, ci);
+        var wait = del ? 24 : 48;
+        if (!del && ci === s.length) { del = true; wait = 1700; }
+        else if (del && ci === 0) { del = false; pi = (pi + 1) % phrases.length; wait = 350; }
+        setTimeout(tick, wait);
+      })();
+    }
+  }
+
+  /* ---------- Particle network background ---------- */
+  var cv = document.getElementById('bg');
+  var cx = cv && cv.getContext ? cv.getContext('2d') : null;
+  if (cx) {
+    var W = 0, H = 0, pts = [], mouse = { x: -9999, y: -9999 };
+    var size = function(){
+      var d = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = W * d; cv.height = H * d;
+      cx.setTransform(d, 0, 0, d, 0, 0);
+      var n = Math.round(Math.min(70, (W * H) / 22000));
+      pts = [];
+      for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .28, vy: (Math.random() - .5) * .28 });
+      draw();
+    };
+    var draw = function(){
+      cx.clearRect(0, 0, W, H);
+      for (var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        cx.beginPath(); cx.arc(p.x, p.y, 1.6, 0, 6.2832); cx.fillStyle = 'rgba(46,230,197,.65)'; cx.fill();
+        for (var j = i + 1; j < pts.length; j++){
+          var q = pts[j], dx = p.x - q.x, dy = p.y - q.y, dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130){
+            cx.strokeStyle = 'rgba(46,230,197,' + (0.22 * (1 - dist / 130)).toFixed(3) + ')';
+            cx.lineWidth = 1; cx.beginPath(); cx.moveTo(p.x, p.y); cx.lineTo(q.x, q.y); cx.stroke();
+          }
+        }
+        var mx = p.x - mouse.x, my = p.y - mouse.y, md = Math.sqrt(mx * mx + my * my);
+        if (md < 160){
+          cx.strokeStyle = 'rgba(124,107,255,' + (0.5 * (1 - md / 160)).toFixed(3) + ')';
+          cx.beginPath(); cx.moveTo(p.x, p.y); cx.lineTo(mouse.x, mouse.y); cx.stroke();
+        }
+      }
+    };
+    var loop = function(){
+      if (!document.hidden){
+        for (var i = 0; i < pts.length; i++){
+          var p = pts[i]; p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+        }
+        draw();
+      }
+      window.requestAnimationFrame(loop);
+    };
+    size();
+    window.addEventListener('resize', size);
+    window.addEventListener('mousemove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; });
+    if (!reduced && window.requestAnimationFrame) loop();
+  }
+
+  /* ---------- Scroll progress and timeline ---------- */
+  var prog = document.getElementById('progress');
+  var tl = $('.timeline');
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = (doc.scrollHeight - window.innerHeight) || 1;
+    if (prog) prog.style.width = Math.min(100, (window.scrollY / max) * 100) + '%';
+    if (tl){
+      var r = tl.getBoundingClientRect();
+      var mid = window.innerHeight * 0.6;
+      var p = Math.max(0, Math.min(1, (mid - r.top) / (r.height || 1)));
+      tl.style.setProperty('--tp', (p * 100).toFixed(1) + '%');
+      $$('li', tl).forEach(function(li){
+        li.classList.toggle('passed', li.getBoundingClientRect().top < mid);
+      });
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  /* ---------- Rings ---------- */
+  $$('.rings').forEach(function(r){ onView(r, function(el){ el.classList.add('in'); }, true, 0.3); });
+
+  /* ---------- Animated flowcharts ---------- */
+  $$('.flow').forEach(function(f){
+    f.classList.add('anim');
+    var steps = $$('.step', f);
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'replay'; btn.textContent = 'Replay flow';
+    f.parentNode.insertBefore(btn, f);
+    var timers = [];
+    function play(){
+      timers.forEach(clearTimeout); timers = [];
+      steps.forEach(function(s){ s.classList.remove('lit'); });
+      steps.forEach(function(s, i){
+        timers.push(setTimeout(function(){ s.classList.add('lit'); }, reduced ? 0 : 120 + i * 280));
+      });
+    }
+    btn.addEventListener('click', play);
+    onView(f, play, true, 0.25);
+  });
+
+  /* ---------- Interactive demo ---------- */
+  var rooms = $$('.room');
+  var progBar = document.getElementById('prog');
+  var sl = document.getElementById('sign-l'), st = document.getElementById('sign-t');
+  var lock = document.getElementById('locked'), status = document.getElementById('status');
+  var done = 0;
+  function resetDemo(){
+    done = 0;
+    rooms.forEach(function(r){ r.classList.remove('done'); r.querySelector('.chip').textContent = 'Tap to photograph'; });
+    progBar.style.width = '0%';
+    status.textContent = '0 of ' + rooms.length + ' rooms photographed';
+    [sl, st].forEach(function(b, i){
+      b.disabled = true; b.classList.remove('ready', 'signed');
+      b.textContent = i === 0 ? 'Landlord sign' : 'Tenant sign';
+    });
+    lock.classList.remove('show');
+  }
+  rooms.forEach(function(r){
+    r.addEventListener('click', function(){
+      if (r.classList.contains('done')) return;
+      r.classList.add('done');
+      var d = new Date();
+      r.querySelector('.chip').textContent = 'Photo ' + d.toLocaleTimeString('en-SG', { hour: '2-digit', minute: '2-digit' });
+      done++;
+      progBar.style.width = (done / rooms.length * 100) + '%';
+      status.textContent = done + ' of ' + rooms.length + ' rooms photographed';
+      if (done === rooms.length){
+        status.textContent = 'All rooms photographed. Both parties can now sign.';
+        [sl, st].forEach(function(b){ b.disabled = false; b.classList.add('ready'); });
+      }
+    });
+  });
+  function sign(b, who){
+    if (b.disabled || b.classList.contains('signed')) return;
+    b.classList.remove('ready'); b.classList.add('signed');
+    b.textContent = who + ' signed';
+    if (sl.classList.contains('signed') && st.classList.contains('signed')){
+      lock.classList.add('show');
+      status.textContent = 'Report locked and timestamped.';
+    }
+  }
+  if (sl && st){
+    sl.addEventListener('click', function(){ sign(sl, 'Landlord'); });
+    st.addEventListener('click', function(){ sign(st, 'Tenant'); });
+    var rs = document.getElementById('reset');
+    if (rs) rs.addEventListener('click', resetDemo);
+  }
+  var cmp = $('input.cmp'), cmpBox = document.getElementById('cmp');
+  if (cmp && cmpBox){
+    cmp.addEventListener('input', function(){ cmpBox.style.setProperty('--cut', cmp.value + '%'); });
+  }
+
+  /* ---------- Scenario toggle ---------- */
+  ['i-share', 'i-dep', 'i-yield', 'i-cost'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', renderDep);
+  });
+  var btns = $$('.seg button');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      render(b.getAttribute('data-s'));
+    });
+  });
+  render('base');
+})();
+</script>
+</body>
+</html>
