@@ -24,11 +24,30 @@ a{color:var(--accent)}
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 12px var(--accent)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-nav{position:sticky;top:0;z-index:20;background:rgba(6,10,15,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;gap:18px;align-items:center;overflow-x:auto;white-space:nowrap;padding-top:11px;padding-bottom:11px}
-nav strong{color:var(--accent);margin-right:6px;letter-spacing:.04em;text-shadow:0 0 12px rgba(46,230,197,.6)}
-nav a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
-nav a:hover{color:var(--ink)}
+.hdr{position:fixed;top:12px;left:12px;right:12px;z-index:40;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.hdr>*{pointer-events:auto}
+.hpill{display:flex;align-items:center;gap:10px;padding:8px 16px 8px 14px;border-radius:999px;background:rgba(6,10,15,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.hpill strong{color:var(--accent);letter-spacing:.04em;text-shadow:0 0 12px rgba(46,230,197,.6);font-size:15px}
+.hpill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:dotp 2s infinite}
+.hpill #cur{color:var(--muted);font-size:13px;border-left:1px solid var(--line);padding-left:10px;max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@keyframes dotp{50%{opacity:.35}}
+.menu-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;cursor:pointer;color:var(--accent);background:rgba(6,10,15,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 6px 24px rgba(0,0,0,.35),0 0 18px rgba(46,230,197,.18);transition:transform .35s,box-shadow .25s,border-color .25s;padding:0}
+.menu-btn:hover,.menu-btn:focus-visible{border-color:var(--accent);box-shadow:0 6px 24px rgba(0,0,0,.35),0 0 22px rgba(46,230,197,.45);outline:none}
+.menu-btn svg{width:20px;height:20px;transition:transform .35s}
+.menu-btn svg path{transition:transform .35s,opacity .2s;transform-origin:12px 12px}
+.menu-btn[aria-expanded="true"] .l1{transform:translateY(5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .l2{opacity:0}
+.menu-btn[aria-expanded="true"] .l3{transform:translateY(-5px) rotate(-45deg)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,86vw);z-index:35;padding:78px 14px 20px;background:rgba(8,13,20,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-left:1px solid var(--line);transform:translateX(105%);transition:transform .4s cubic-bezier(.2,.8,.2,1);overflow-y:auto;visibility:hidden}
+.drawer.open{transform:none;visibility:visible}
+.drawer a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-size:15px;border:1px solid transparent;transition:background .2s,color .2s,transform .2s}
+.drawer a i{font-style:normal;font-size:11px;color:var(--accent);opacity:.7;width:20px;font-family:ui-monospace,Menlo,monospace}
+.drawer a:hover{color:var(--ink);background:rgba(46,230,197,.07);transform:translateX(3px)}
+.drawer a.on{color:var(--ink);background:rgba(46,230,197,.10);border-color:rgba(46,230,197,.35)}
+.scrim{position:fixed;inset:0;z-index:34;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.open{opacity:1;pointer-events:auto}
+section,header.hero{scroll-margin-top:64px}
+@media(prefers-reduced-motion:reduce){.drawer,.scrim,.menu-btn svg path,.hpill .dot{transition:none;animation:none}}
 header.hero{padding:84px 0 40px;position:relative}
 .eyebrow{color:var(--accent);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
 h1{font-size:clamp(34px,6.4vw,60px);line-height:1.08;margin:12px 0 16px;font-weight:800;letter-spacing:-.02em}
@@ -189,39 +208,123 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
 .chk.done{border-color:rgba(95,227,161,.55);background:var(--good-soft)}
 .chk b{display:block}
 .chk .when{font-size:12px;color:var(--muted);margin-left:8px}
+
+/* ================= FUTURE LAYER ================= */
+:root{--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;--cy:#00e5ff;--mg:#ff2e93}
+body{counter-reset:sec}
+body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 4px);mix-blend-mode:overlay}
+body::before{content:"";position:fixed;inset:0;z-index:59;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.45))}
+.eyebrow,.stat .num,.ph-sub,thead th,.flowtitle,.timeline .when,.timeline .goal,.pill,.ticker span,.ctl,.legend,.chk .when,.lab,.chip,.replay{font-family:var(--mono)}
+.stat .num{letter-spacing:-.02em}
+.flowtitle{font-size:14px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.flowtitle::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--accent),transparent);box-shadow:0 0 10px var(--accent)}
+/* section headings */
+section{counter-increment:sec;position:relative}
+section>.wrap>h2{position:relative}
+section>.wrap>h2::before{content:"// " counter(sec,decimal-leading-zero) "  ·  SECTION";display:block;font:600 11px/1 var(--mono);letter-spacing:.28em;color:var(--accent);margin-bottom:10px;opacity:.85;text-shadow:0 0 10px rgba(46,230,197,.6)}
+section>.wrap>h2::after{content:"";display:block;height:2px;width:0;margin-top:10px;background:linear-gradient(90deg,var(--accent),var(--accent2),transparent);box-shadow:0 0 14px var(--accent);transition:width 1.2s cubic-bezier(.2,.8,.2,1) .25s}
+section>.wrap>h2.in::after{width:min(220px,60%)}
+section::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:linear-gradient(90deg,var(--accent),transparent);box-shadow:0 0 12px var(--accent);transition:width 1.4s ease}
+section.live::before{width:100%}
+/* hero */
+header.hero{overflow:hidden;padding-top:96px;padding-bottom:56px}
+header.hero>.wrap{position:relative;z-index:2}
+header.hero::before{content:"";position:absolute;left:-10%;right:-10%;bottom:-40px;height:420px;z-index:0;background:linear-gradient(rgba(46,230,197,.35) 1px,transparent 1px) 0 0/100% 44px,linear-gradient(90deg,rgba(46,230,197,.35) 1px,transparent 1px) 0 0/60px 100%;transform:perspective(420px) rotateX(62deg);transform-origin:bottom;animation:gridmove 2.4s linear infinite;-webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%);opacity:.5}
+@keyframes gridmove{to{background-position:0 44px,0 0}}
+header.hero::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;z-index:1;background:linear-gradient(90deg,transparent,var(--cy),transparent);box-shadow:0 0 22px var(--cy);opacity:.55;animation:sweep 7s ease-in-out infinite}
+@keyframes sweep{0%{top:0;opacity:0}8%{opacity:.6}50%{opacity:.35}92%{opacity:.6}100%{top:100%;opacity:0}}
+#rain{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.5;-webkit-mask-image:linear-gradient(90deg,#000,transparent 35%,transparent 65%,#000);mask-image:linear-gradient(90deg,#000,transparent 35%,transparent 65%,#000)}
+.hud{display:flex;flex-wrap:wrap;gap:8px 22px;font:500 11px/1 var(--mono);letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
+.hud span{display:inline-flex;align-items:center;gap:8px}
+.hud b{color:var(--accent);font-weight:600}
+.hud .on::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 10px var(--good);animation:dotp 1.4s infinite}
+.orbit{position:absolute;right:-30px;top:60px;width:360px;height:360px;z-index:1;pointer-events:none;opacity:.6}
+.orbit i{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(46,230,197,.45)}
+.orbit i:nth-child(1){animation:spin 26s linear infinite}
+.orbit i:nth-child(2){inset:44px;border-style:solid;border-color:rgba(124,107,255,.5);border-top-color:transparent;border-bottom-color:transparent;animation:spin 14s linear infinite reverse}
+.orbit i:nth-child(3){inset:92px;border:1px solid rgba(0,229,255,.5);border-left-color:transparent;animation:spin 9s linear infinite}
+.orbit i:nth-child(4){inset:136px;border:2px solid rgba(46,230,197,.9);border-radius:50%;box-shadow:0 0 30px rgba(46,230,197,.7),inset 0 0 22px rgba(46,230,197,.5);animation:corep 3s ease-in-out infinite}
+.orbit u{position:absolute;left:50%;top:50%;width:0;height:0}
+.orbit u::after{content:"";position:absolute;width:9px;height:9px;margin:-4px;border-radius:50%;background:#fff;box-shadow:0 0 14px 3px var(--accent)}
+.orbit u:nth-of-type(1){animation:spin 8s linear infinite}.orbit u:nth-of-type(1)::after{transform:translateX(180px)}
+.orbit u:nth-of-type(2){animation:spin 12s linear infinite reverse}.orbit u:nth-of-type(2)::after{transform:translateX(134px);box-shadow:0 0 14px 3px var(--accent2)}
+.orbit u:nth-of-type(3){animation:spin 5s linear infinite}.orbit u:nth-of-type(3)::after{transform:translateX(88px);box-shadow:0 0 14px 3px var(--cy)}
+.orbit em{position:absolute;inset:0;display:grid;place-items:center;font:800 26px var(--mono);color:var(--accent);text-shadow:0 0 16px var(--accent);font-style:normal}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes corep{50%{transform:scale(1.12);opacity:.7}}
+@media(max-width:1100px){.orbit{opacity:.25;right:-120px}}
+@media(max-width:700px){.orbit{display:none}}
+/* glitch */
+h1{animation:glitch 7s infinite}
+@keyframes glitch{0%,90%,100%{transform:none;filter:none}91%{transform:translateX(-3px) skewX(2deg);filter:drop-shadow(3px 0 var(--mg)) drop-shadow(-3px 0 var(--cy))}93%{transform:translateX(3px);filter:drop-shadow(-3px 0 var(--mg)) drop-shadow(3px 0 var(--cy))}95%{transform:translateX(-1px) skewX(-2deg);filter:drop-shadow(2px 0 var(--cy))}97%{transform:none;filter:none}}
+/* flows: data packets */
+.down{font-size:0 !important;height:34px;position:relative;animation:none !important}
+.down::before{content:"";position:absolute;left:50%;top:2px;bottom:2px;width:1px;background:linear-gradient(rgba(46,230,197,.9),rgba(124,107,255,.35))}
+.down::after{content:"";position:absolute;left:50%;top:0;width:7px;height:7px;margin-left:-3px;border-radius:50%;background:#fff;box-shadow:0 0 10px 2px var(--accent);animation:packet 1.5s linear infinite}
+@keyframes packet{0%{top:-2px;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:30px;opacity:0}}
+.step{position:relative}
+.step.hl::after,.step.good::after,.step.bad::after{content:"";position:absolute;inset:-1px;border-radius:10px;pointer-events:none;border:1px solid transparent;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.35),transparent 60%) 200% 0/250% 100% no-repeat;-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:edge 3.2s linear infinite}
+@keyframes edge{to{background-position:-100% 0}}
+/* buttons */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine2 3.4s ease-in-out infinite}
+.btn.ghost::after{display:none}
+@keyframes shine2{0%,60%{left:-60%}100%{left:140%}}
+/* header extras */
+.menu-btn{position:relative}
+.menu-btn::before{content:"";position:absolute;inset:-4px;border-radius:50%;pointer-events:none;background:conic-gradient(var(--accent) calc(var(--p,0)*1%),rgba(255,255,255,.08) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));filter:drop-shadow(0 0 4px var(--accent))}
+.hpill{position:relative;overflow:hidden}
+.hpill::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(46,230,197,.18),transparent 70%);transform:translateX(-120%);animation:pillsweep 5s ease-in-out infinite}
+@keyframes pillsweep{60%,100%{transform:translateX(120%)}}
+.drawer a{opacity:0;transform:translateX(26px);font-family:var(--mono);font-size:14px;letter-spacing:.02em}
+.drawer.open a{opacity:1;transform:none;transition:opacity .35s ease calc(var(--i,0)*38ms + 120ms),transform .45s cubic-bezier(.2,.8,.2,1) calc(var(--i,0)*38ms + 120ms),background .2s,color .2s,border-color .2s}
+.drawer.open a:hover{transform:translateX(5px);transition-delay:0s}
+.drawer::before{content:"NAV://RENTNITO";position:absolute;top:30px;left:26px;font:600 11px var(--mono);letter-spacing:.28em;color:var(--accent);text-shadow:0 0 10px var(--accent)}
+.drawer::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);box-shadow:0 0 16px var(--accent);animation:sweep2 3.5s linear infinite}
+@keyframes sweep2{from{top:0}to{top:100%}}
+/* market rings orbit */
+.rings::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(46,230,197,.35);animation:spin 40s linear infinite;pointer-events:none}
+.rings::after{content:"";position:absolute;inset:-26px;border-radius:50%;border:1px solid transparent;border-top-color:var(--accent2);border-right-color:rgba(124,107,255,.3);animation:spin 12s linear infinite reverse;pointer-events:none}
+@media print{#rain,.orbit,body::before,body::after{display:none !important}}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
   html{scroll-behavior:auto}
 }
-@media print{nav,#bg,#progress{display:none}body{background:#fff;color:#000}section{break-inside:avoid}}
+@media print{.hdr,.drawer,.scrim,#bg,#progress{display:none}body{background:#fff;color:#000}section{break-inside:avoid}}
 </style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <div id="progress"></div>
 
-<nav aria-label="Sections">
-  <div class="wrap">
-    <strong>Rentnito</strong>
-    <a href="#problem">Problem</a>
-    <a href="#demo">Try it</a>
-    <a href="#how">How it works</a>
-    <a href="#disputes">Disputes</a>
-    <a href="#owner">Landlord checklist</a>
-    <a href="#market">Market</a>
-    <a href="#model">Revenue model</a>
-    <a href="#deposit">Deposits</a>
-    <a href="#forecast">Forecast</a>
-    <a href="#valuation">Valuation</a>
-    <a href="#canvas">Canvas</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#risks">Risks</a>
-    <a href="#team">Collaborate</a>
-  </div>
+<div class="hdr">
+  <a class="hpill" href="#top" aria-label="Back to top"><span class="dot"></span><strong>Rentnito</strong><span id="cur">Overview</span></a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open section menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="l1" d="M4 7h16"/><path class="l2" d="M4 12h16"/><path class="l3" d="M4 17h16"/></svg>
+  </button>
+</div>
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Sections">
+    <a href="#problem"><i>01</i>Problem</a>
+    <a href="#demo"><i>02</i>Try it</a>
+    <a href="#how"><i>03</i>How it works</a>
+    <a href="#disputes"><i>04</i>Disputes</a>
+    <a href="#owner"><i>05</i>Landlord checklist</a>
+    <a href="#market"><i>06</i>Market</a>
+    <a href="#model"><i>07</i>Revenue model</a>
+    <a href="#deposit"><i>08</i>Deposits</a>
+    <a href="#forecast"><i>09</i>Forecast</a>
+    <a href="#valuation"><i>10</i>Valuation</a>
+    <a href="#canvas"><i>11</i>Canvas</a>
+    <a href="#roadmap"><i>12</i>Roadmap</a>
+    <a href="#risks"><i>13</i>Risks</a>
+    <a href="#team"><i>14</i>Collaborate</a>
 </nav>
 
-<header class="hero">
+<header class="hero" id="top">
+  <div class="orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><u></u><u></u><u></u><em>R</em></div>
   <div class="wrap">
+    <div class="hud"><span class="on">SYS ONLINE</span><span>SG-1 <b>1.3521N 103.8198E</b></span><span>SGT <b id="clock">--:--:--</b></span><span>BUILD <b>CONCEPT 0.1</b></span></div>
     <div class="eyebrow">Singapore first &middot; Early-stage concept &middot; October 2026</div>
     <h1>Rentnito: a <span class="grad">tenancy record</span> both sides can trust.</h1>
     <p class="lead">Signed, timestamped move-in and move-out condition reports for Singapore landlords and tenants. Around that core sits a move-in checklist that connects new tenants to movers, internet and energy providers, and a video walkthrough service for people renting from overseas.</p>
@@ -301,7 +404,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
 <section id="how">
   <div class="wrap">
     <h2>How it works</h2>
-    <p class="sub">Three connected flows. The first is the core product, the second is where partner revenue comes from, and the third is a premium service for overseas tenants.</p>
+    <p class="sub">The first flow is the core product, the second is where partner revenue comes from, and the third is a premium service for overseas tenants. The later flows cover deposits, disputes and unresponsive landlords. The landlord journey is in its own section below.</p>
 
     <div class="flowtitle">Flow 1: The condition report (core product)</div>
     <div class="flow">
@@ -400,6 +503,39 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
       <div class="step bad"><b>Tier 3: Third-party resolution</b><span>Community Mediation Centre, Singapore Mediation Centre, a private mediator, or the Small Claims Tribunals. Evidence pack handed over</span></div>
     </div>
     <p class="note"><b>Fees and options.</b> The fee model, an estimator and the verified third-party options are in the disputes section below.</p>
+
+    <div class="flowtitle">Flow 7: A repair is needed and the landlord is slow or silent</div>
+    <div class="flow" style="max-width:760px">
+      <div class="step"><b>Tenant logs the repair request</b><span>Photos, description and urgency, timestamped and sent to the landlord by link, WhatsApp or email</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Who pays? Rentnito checks the repair clause</b><span>Reads the agreement's rules on minor repairs and structural items, then shows likely landlord, likely tenant or unclear</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>Response clock starts</b><span>Editable defaults, for example 48 hours for urgent faults and 7 days for the rest. These are product settings, not legal deadlines</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Landlord replies and books a fix</b><span>Tenant confirms with an after photo, request closed</span></div>
+        <div class="step bad"><b>No reply, or an excuse</b><span>Every delay is logged with its date</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Step 1: Automatic reminders</b><span>Polite nudges on set days, each one recorded as sent and read or unread</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Step 2: Formal written notice</b><span>Generated from the log. States the defect, the clause and a reasonable deadline, often 14 days in standard agreements</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Fixed</b><span>Closed with before and after photos</span></div>
+        <div class="step bad"><b>Still ignored</b><span>Escalate</span></div>
+      </div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Step 3: Tiered resolution (Flow 5)</b><span>Structured negotiation first, then guided resolution, using the repair timeline as evidence</span></div>
+      <div class="down">&darr;</div>
+      <div class="step bad"><b>Step 4: Third party and legal advice</b><span>Mediation or the Small Claims Tribunals for money claims. Ending the tenancy over repeated breaches is a legal question, so Rentnito points to advice and does not decide it</span></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Read the agreement first</h3><p>CEA's HDB flat template has the tenant paying for minor repairs up to a per-item amount left blank for the parties to fill in, while the landlord keeps the structure, sanitary pipes and concealed wiring in repair. Air-conditioner breakdowns are the landlord's unless the tenant caused them. Your own agreement may differ.</p></div>
+      <div class="card"><h3>Do not withhold rent or self-repair</h3><p>The same template says rent is paid without deduction or set-off, and repairs above the agreed amount need the landlord's prior written consent. It gives no express right to repair and deduct. Rentnito would warn tenants before they take a step that could put them in breach.</p></div>
+      <div class="card"><h3>Where it can end up</h3><p>The Small Claims Tribunals can hear residential tenancy disputes where the tenancy does not exceed 2 years, for money claims up to S$20,000 (S$30,000 if both sides consent). Filing is S$10 up to S$5,000, S$20 up to S$10,000 and 1% of the claim above that. Mediation at a Community Mediation Centre may not cover repair neglect, so check first.</p></div>
+    </div>
+    <p class="note"><b>What Rentnito adds.</b> A landlord who ignores repairs usually wins by silence, because the tenant has no record. The product gives tenants a dated paper trail and gives responsive landlords a way to show they acted. The reminder timings are product defaults, and the legal points come from CEA's template agreement and one legal information article. They are not legal advice, and a signed agreement overrides any template.</p>
   </div>
 </section>
 
@@ -691,7 +827,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
       <div class="card"><h3>Design and front end</h3><p>A friendly mobile-first reporting experience that works with no app download.</p></div>
     </div>
     <p style="color:var(--muted);margin-top:16px">Open to equity, revenue share or milestone-based arrangements, to be discussed with the right person.</p>
-    <a class="btn" id="contact" href="#" hidden>Get in touch</a>
+    <div class="cta" style="margin-top:14px"><a class="btn ghost" href="tearsheet.html">Two-page summary (A4, printable)</a><a class="btn" id="contact" href="#" hidden>Get in touch</a></div>
   </div>
 </section>
 
@@ -699,6 +835,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
   <div class="wrap">
     <p><b>Sources.</b> Private rental contracts for 2025 (89,376) from URA data as reported by <a href="https://edgeprop.sg/property-news/singapore-private-home-prices-modest-06-4q2025-while-rents-dip-05">EdgeProp</a>. HDB approved rental applications for 2025 (39,408) and flats rented out (58,775 at end 2025) from HDB data as reported by <a href="https://www.99.co/singapore/insider/hdb-ura-q42025-statistics/">99.co</a>. Non-resident population (about 1.91 million, June 2025) from <a href="https://www.strategygroup.gov.sg/files/population_in_brief_2025.pdf">Population in Brief 2025</a>. Payment services categories from the <a href="https://www.mas.gov.sg/regulation/payments/licensing-for-payment-service-providers/types-of-payment-services">MAS page on types of payment services</a> and the <a href="https://www.mas.gov.sg/-/media/MAS/FAQ/Payment-Services-Act-FAQ-4-October-2019.pdf">MAS Payment Services Act FAQ</a>. Fund management as a licensed activity from a <a href="https://resourcehub.bakermckenzie.com/en/resources/global-financial-services-regulatory-guide/asia-pacific/singapore/topics/what-types-of-activities-require-a-license-in-your-jurisdiction">Baker McKenzie regulatory guide</a>. Small Claims Tribunals scope from the <a href="https://www.judiciary.gov.sg/civil/small-claims">Singapore Courts</a>. Rently from <a href="https://fintechnews.sg/83678/proptech/rently-debuts-in-singapore-offering-deposit-free-and-singpass-verified-rentals/">Fintech News Singapore</a>.</p>
     <p><b>Landlord and dispute sources.</b> Rental income and the 15% deemed expense option from an <a href="https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/e-Tax_Guides/e-Tax%20Guide_IIT_Simplification_of_Claim_of_Rental_Expenses_for_Individuals.pdf">IRAS e-Tax guide</a>. Stamp duty rates and deadlines from a <a href="https://blog.cove.sg/stamp-duty-for-rental-in-singapore/">property guide</a>, so confirm them on the IRAS site. HDB rules from the <a href="https://www.hdb.gov.sg/business/estate-agents-and-salespersons/renting-out-a-flat-or-bedroom/eligibility">HDB renting out page</a> and private home rules from the <a href="https://www.ura.gov.sg/guidelines/property-and-business-owners/property/renting-property/">URA page</a>. Mediation from the <a href="https://cmc.mlaw.gov.sg/apply-for-mediation/disputes-suitable-for-mediation/">Community Mediation Centre</a>, the <a href="https://mediation.com.sg/wp-content/uploads/2026/02/Fee-Schedule-Annex-B-1-March-2026.pdf">Singapore Mediation Centre fee schedule</a>, the <a href="https://www.mlaw.gov.sg/files/NoteonMediationAct.pdf">Ministry of Law note on the Mediation Bill</a> and the <a href="https://www.judiciary.gov.sg/civil/file-small-claim">Small Claims Tribunals</a>. Payment services detail from the <a href="https://www.mas.gov.sg/-/media/mas/regulations-and-financial-stability/regulations-guidance-and-licensing/payment-service-providers/guide-to-the-payment-services-act-2019.pdf">MAS guide to the Payment Services Act</a>, the <a href="https://www.mas.gov.sg/-/media/MAS/Fintech/Payment-Services-Act/Payment-Services-Act-FAQ-11-May-2020.pdf">MAS FAQ</a>, a <a href="https://www.wongpartnership.com/upload/EmailEDM/Navigating%20the%20Payment%20Services%20Act.pdf">WongPartnership briefing</a> and a <a href="https://compliance.waystone.com/licensing-guide-payment-services-act-psa/">Waystone licensing guide</a>.</p>
+    <p><b>Repairs sources.</b> Repair and notice clauses from the <a href="https://www.cea.gov.sg/docs/default-source/default-document-library/hdb-flat-tenancy-agreement-(v1-3).pdf">CEA HDB flat tenancy agreement template</a>. Small Claims Tribunals limits, fees and mediation routes from a <a href="https://singaporelegaladvice.com/law-articles/what-if-i-have-a-tenancy-dispute-or-complaint-in-singapore/">legal information article</a>, so confirm current fees with the Tribunals.</p>
     <p><b>Licensing note.</b> The licensing summary is a research starting point drawn from public pages and secondary sources. It is not legal advice and the escrow question is unresolved. Confirm everything with a Singapore lawyer or MAS before acting.</p>
     <p><b>Disclaimer.</b> This document contains forward-looking assumptions and is for discussion only. It is not investment, legal or financial advice, and nothing here is an offer to sell or a solicitation to buy securities.</p>
   </div>
@@ -1158,6 +1295,88 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
   });
   render('base');
   renderOwner('hdbflat');
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),dr=document.getElementById('drawer'),sc=document.getElementById('scrim'),cur=document.getElementById('cur');
+  var links=[].slice.call(dr.querySelectorAll('a'));
+  function set(o){dr.classList.toggle('open',o);sc.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);btn.setAttribute('aria-label',o?'Close section menu':'Open section menu');}
+  btn.addEventListener('click',function(){set(!dr.classList.contains('open'));});
+  sc.addEventListener('click',function(){set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){set(false);btn.focus();}});
+  links.forEach(function(a){a.addEventListener('click',function(){set(false);});});
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function spy(){
+    var y=window.scrollY+120,idx=-1;
+    for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].offsetTop<=y)idx=i;}
+    links.forEach(function(a,i){a.classList.toggle('on',i===idx);});
+    cur.textContent=idx<0?'Overview':links[idx].textContent.replace(/^\d+/,'');
+  }
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var reduced=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var raf=window.requestAnimationFrame?window.requestAnimationFrame.bind(window):function(f){return setTimeout(f,16);};
+  var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s));};
+  /* drawer stagger */
+  $$('#drawer a').forEach(function(a,i){a.style.setProperty('--i',i);});
+  /* scroll ring on menu button */
+  var mb=$('#menuBtn');
+  function sp(){var h=document.documentElement.scrollHeight-window.innerHeight;if(mb)mb.style.setProperty('--p',h>0?Math.min(100,window.scrollY/h*100).toFixed(1):0);}
+  window.addEventListener('scroll',sp,{passive:true});sp();
+  /* SGT clock */
+  var ck=$('#clock');
+  function tick(){try{ck.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Singapore',hour12:false});}catch(e){ck.textContent=new Date().toISOString().slice(11,19);}}
+  if(ck){tick();setInterval(tick,1000);}
+  /* section lines */
+  if('IntersectionObserver' in window){
+    var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('live');so.unobserve(e.target);}});},{threshold:.05});
+    $$('section').forEach(function(x){so.observe(x);});
+  }else{$$('section').forEach(function(x){x.classList.add('live');});}
+  /* text scramble on section titles */
+  var GL='01#$%&<>/\\{}[]=+*';
+  function scramble(el){
+    var orig=el.textContent,n=orig.length,t0=null,dur=700;
+    el.setAttribute('aria-label',orig);
+    function step(ts){
+      if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/dur),out='';
+      for(var i=0;i<n;i++){var c=orig.charAt(i);out+=(c===' '||i<p*n*1.15)?c:GL.charAt(Math.floor(Math.random()*GL.length));}
+      el.textContent=out;
+      if(p<1)raf(step);else el.textContent=orig;
+    }
+    raf(step);
+  }
+  if(!reduced&&'IntersectionObserver' in window){
+    var sc=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){scramble(e.target);sc.unobserve(e.target);}});},{threshold:.6});
+    $$('section>.wrap>h2').forEach(function(h){if(h.children.length===0)sc.observe(h);});
+  }
+  /* hero data rain */
+  var hero=$('header.hero'),cv=document.createElement('canvas');
+  cv.id='rain';cv.setAttribute('aria-hidden','true');
+  var cx=cv.getContext?cv.getContext('2d'):null;
+  if(hero&&cx){
+    hero.insertBefore(cv,hero.firstChild);
+    var W=0,H=0,cols=[],FS=14,vis=true,last=0,CH='01ABCDEF<>/{}$#SGRENT';
+    function rs(){var d=Math.min(window.devicePixelRatio||1,2);W=hero.clientWidth;H=hero.clientHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);cols=[];for(var i=0;i<Math.floor(W/FS);i++)cols.push({y:Math.random()*H,v:.6+Math.random()*1.6});cx.font=FS+'px monospace';}
+    function dr(ts){
+      if(vis&&!document.hidden&&ts-last>45){
+        last=ts;cx.clearRect(0,0,W,H);
+        for(var i=0;i<cols.length;i++){
+          var c=cols[i];
+          for(var k=0;k<10;k++){var yy=c.y-k*FS;if(yy<0||yy>H)continue;cx.fillStyle='rgba(46,230,197,'+(k===0?.95:(.5-k*.045)).toFixed(2)+')';cx.fillText(CH.charAt((i*7+k*3+Math.floor(ts/140))%CH.length),i*FS,yy);}
+          c.y+=c.v*FS*.5;if(c.y-10*FS>H){c.y=0;c.v=.6+Math.random()*1.6;}
+        }
+      }
+      raf(dr);
+    }
+    rs();window.addEventListener('resize',rs);
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;}).observe(hero);
+    if(!reduced)raf(dr);
+  }
 })();
 </script>
 </body>
