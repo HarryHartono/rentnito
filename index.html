@@ -73,7 +73,9 @@ ul.tight li{margin:3px 0}
 .replay:hover{color:var(--accent);border-color:var(--accent)}
 .branch{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fan{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fan.f3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:620px){.fan{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.fan.f3{grid-template-columns:1fr}}
 .market{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:28px;align-items:center}
 @media(max-width:760px){.market{grid-template-columns:1fr}}
 .rings{position:relative;width:300px;height:300px;margin:0 auto}
@@ -182,6 +184,11 @@ footer{padding:36px 0 60px;border-top:1px solid var(--line);color:var(--muted);f
 .lab{position:absolute;top:8px;font-size:12px;padding:2px 10px;border-radius:99px;background:rgba(0,0,0,.55);z-index:2}
 .handle{position:absolute;top:0;bottom:0;left:var(--cut);width:2px;background:var(--accent);box-shadow:0 0 14px var(--accent);z-index:3}
 input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;z-index:4}
+.chk{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.chk input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.chk.done{border-color:rgba(95,227,161,.55);background:var(--good-soft)}
+.chk b{display:block}
+.chk .when{font-size:12px;color:var(--muted);margin-left:8px}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
   html{scroll-behavior:auto}
@@ -199,6 +206,8 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     <a href="#problem">Problem</a>
     <a href="#demo">Try it</a>
     <a href="#how">How it works</a>
+    <a href="#disputes">Disputes</a>
+    <a href="#owner">Landlord checklist</a>
     <a href="#market">Market</a>
     <a href="#model">Revenue model</a>
     <a href="#deposit">Deposits</a>
@@ -238,6 +247,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
       <div class="card"><h3>Deposit disputes</h3><p>Move-out arguments over scratches, marks and fittings with no agreed starting record. Landlords lose money and tenants lose deposits unfairly.</p></div>
       <div class="card"><h3>Scattered admin</h3><p>Inventory lists, meter readings, renewal dates and repair requests live in chat threads. Landlords who go direct (no agent) have no simple toolkit.</p></div>
       <div class="card"><h3>A rough landing for newcomers</h3><p>New tenants, especially those arriving from overseas, must sort out movers, internet, electricity and cleaning without knowing who to trust. Many sign for a unit they have never seen.</p></div>
+      <div class="card"><h3>Hidden duties for owners</h3><p>Anyone renting out a unit or a room has approvals, stamp duty and tax to handle, spread across several agencies, and the rules differ for HDB and private homes.</p></div>
     </div>
   </div>
 </section>
@@ -369,7 +379,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     </div>
     <p class="note"><b>Design rule.</b> Rentnito never decides who is right. It supplies the evidence, a fixed process and the holding mechanism, and releases money only on agreement or a formal outcome. Acting as judge would add legal exposure and destroy trust with whichever side loses.</p>
 
-    <div class="flowtitle">Flow 5: What happens when there is a dispute (escalation ladder)</div>
+    <div class="flowtitle">Flow 5: What happens when there is a dispute (three tiers)</div>
     <div class="flow" style="max-width:760px">
       <div class="step"><b>Dispute raised</b><span>Either party flags a difference from the move-in report</span></div>
       <div class="down">&darr;</div>
@@ -377,32 +387,117 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
       <div class="down">&darr;</div>
       <div class="branch">
         <div class="step good"><b>Resolved</b><span>Both sign, funds released as agreed</span></div>
-        <div class="step"><b>Not resolved</b><span>Move to the next tier</span></div>
+        <div class="step"><b>Not resolved</b><span>Move to Tier 2 if the case is simple</span></div>
       </div>
       <div class="down">&darr;</div>
-      <div class="step hl"><b>Tier 2: AI-assisted mediation (low cost)</b><span>Both opt in. The AI reads the evidence and proposes a fair split, which is non-binding</span></div>
+      <div class="step hl"><b>Tier 2: Rentnito guided resolution (percentage fee)</b><span>Both opt in. Evidence review and an AI-assisted proposal, checked by a person. The fee is a percentage of the amount in dispute, split between both parties</span></div>
       <div class="down">&darr;</div>
       <div class="branch">
         <div class="step good"><b>Both accept</b><span>Signed settlement, funds released</span></div>
-        <div class="step"><b>Either rejects, or high value</b><span>Move to the next tier</span></div>
+        <div class="step"><b>Rejected, or too complex</b><span>Referred to Tier 3</span></div>
       </div>
       <div class="down">&darr;</div>
-      <div class="step hl"><b>Tier 3: Professional mediator (paid)</b><span>Human mediator from partner panel, evidence pack handed over, fee per session</span></div>
+      <div class="step bad"><b>Tier 3: Third-party resolution</b><span>Community Mediation Centre, Singapore Mediation Centre, a private mediator, or the Small Claims Tribunals. Evidence pack handed over</span></div>
+    </div>
+    <p class="note"><b>Fees and options.</b> The fee model, an estimator and the verified third-party options are in the disputes section below.</p>
+  </div>
+</section>
+
+<section id="disputes">
+  <div class="wrap">
+    <h2>Dispute resolution: three tiers</h2>
+    <p class="sub">Most deposit disputes are small and fact-based. Rentnito settles simple ones for a fee based on the amount in dispute, and refers everything else to established third parties.</p>
+    <div class="grid g3">
+      <div class="card"><span class="pill">Tier 1 &middot; Free</span><h3 style="margin-top:6px">Structured negotiation</h3><p>Both sides see the same photos and an itemised claim, then trade offers within a fixed window. Included in the product and the main way most disputes should end.</p></div>
+      <div class="card"><span class="pill">Tier 2 &middot; Percentage fee</span><h3 style="margin-top:6px">Rentnito guided resolution</h3><p>For simple cases that negotiation could not close. An AI-assisted proposal based on the evidence, reviewed by a person. Both parties opt in and the fee is shared.</p></div>
+      <div class="card"><span class="pill">Tier 3 &middot; Third party</span><h3 style="margin-top:6px">Referral</h3><p>Anything contested, high value or sensitive goes to a Community Mediation Centre, Singapore Mediation Centre, a private mediator, or the Small Claims Tribunals.</p></div>
+    </div>
+
+    <h3 style="margin-top:28px">How the percentage fee should work</h3>
+    <div class="grid g2">
+      <div class="card"><h3>Charge on the amount in dispute, not on who wins</h3><p>A percentage of the disputed amount, with a minimum and a maximum, split between both parties and payable whatever the outcome. Taking a cut of what one side recovers would give Rentnito a reason to favour that side.</p></div>
+      <div class="card"><h3>Keep neutrality visible</h3><p>Landlords pay for the subscription, so a landlord-friendly bias is the obvious risk. Publish the decision rules, charge both parties equally, and let either side leave for Tier 3 at any time.</p></div>
+      <div class="card"><h3>What counts as simple</h3><ul class="tight"><li>One or two deduction items, such as cleaning or a wall mark.</li><li>Facts that the move-in and move-out photos can show.</li><li>Amounts below a starting cap (for example S$2,000) to be tested.</li></ul></div>
+      <div class="card"><h3>When to refer straight away</h3><ul class="tight"><li>Facts that are not in the record.</li><li>Allegations of misconduct, safety issues or harassment.</li><li>Termination, possession or rent arrears questions.</li><li>Higher-value claims or a party who does not respond.</li></ul></div>
+    </div>
+
+    <h3 style="margin-top:28px">Fee estimator</h3>
+    <p class="sub" style="margin-bottom:12px">Percentage, floor, cap, dispute rate and uptake are my placeholders for you to test, not market data. The annual figure uses Year 5 paid tenancies from the scenario chosen in the forecast.</p>
+    <div class="card" id="dsim">
+      <div class="grid g2">
+        <label class="ctl">Amount in dispute: <b id="o-amt"></b><input type="range" id="d-amt" min="100" max="5000" step="50" value="800"></label>
+        <label class="ctl">Fee as a percentage of the amount: <b id="o-pct"></b><input type="range" id="d-pct" min="1" max="15" step="0.5" value="5"></label>
+        <label class="ctl">Minimum fee: <b id="o-min"></b><input type="range" id="d-min" min="0" max="100" step="5" value="20"></label>
+        <label class="ctl">Maximum fee: <b id="o-max"></b><input type="range" id="d-max" min="20" max="500" step="10" value="100"></label>
+        <label class="ctl">Share of tenancies with a deduction dispute: <b id="o-rate"></b><input type="range" id="d-rate" min="1" max="20" step="1" value="8"></label>
+        <label class="ctl">Share of those disputes using Tier 2: <b id="o-up"></b><input type="range" id="d-up" min="10" max="100" step="5" value="60"></label>
+      </div>
+      <div class="grid g3" id="disp-out" style="margin-top:14px"></div>
+    </div>
+    <p class="note"><b>Read the result.</b> A percentage fee suits small disputes because it stays far below the cost of a formal mediation. It is a trust feature rather than a big revenue line, so the page keeps it out of the base forecast.</p>
+
+    <h3 style="margin-top:28px">Third-party options (what I could verify)</h3>
+    <div class="grid g2">
+      <div class="card"><h3>Community Mediation Centre</h3><p>Handles landlord and tenant matters including refund of a rental deposit, problems with the property and tenancy expenses, and small interest-free money matters under S$5,000. Its page does not state fees, so check with the Centre. It is not suited to legal, contractual or commercial disputes.</p></div>
+      <div class="card"><h3>Singapore Mediation Centre</h3><p>For disputes up to S$60,000 the schedule effective 1 March 2026 shows a S$27.25 filing fee and up to S$400 per party for a full-day session, GST included, with a surcharge on Saturdays. Larger disputes cost more.</p></div>
+      <div class="card"><h3>Small Claims Tribunals</h3><p>Covers residential tenancy disputes where the tenancy does not exceed two years. The claim limit is S$20,000, or S$30,000 if both parties sign a Memorandum of Consent. Lawyers are not allowed to represent parties. Filing fees were not stated on the page I read.</p></div>
+      <div class="card"><h3>Mediation Act</h3><p>A Ministry of Law note on the Mediation Bill says parties can have a mediated settlement recorded as a court order if they consent and the mediation was run by a designated provider or certified mediator. Community mediations are excluded. Confirm the final Act, because it matters for whether a Rentnito settlement is directly enforceable.</p></div>
+    </div>
+    <p class="note"><b>Still to check.</b> Whether Rentnito's own tier could be treated as a regulated or legal service, whether any referral fee from private mediators would compromise neutrality, and PDPA handling of the photos and statements used in a dispute. Take Singapore legal advice.</p>
+  </div>
+</section>
+
+<section id="owner">
+  <div class="wrap">
+    <h2>The owner side: a landlord compliance checklist</h2>
+    <p class="sub">Owners have their own duties when they rent out a whole unit or a room: approvals, stamp duty and tax. Rentnito can turn them into a checklist for the property type, as a value-added service that keeps landlords on the platform. Rules differ and change, so every item points back to the agency.</p>
+    <div class="grid g4" style="margin-bottom:18px">
+      <div class="card"><h3>IRAS</h3><p>Rental income tax, stamp duty on the tenancy, property tax rates.</p></div>
+      <div class="card"><h3>HDB</h3><p>Whole-flat eligibility, bedroom approval, tenant and occupancy limits.</p></div>
+      <div class="card"><h3>URA</h3><p>Minimum stay and occupancy caps for private homes.</p></div>
+      <div class="card"><h3>MCST</h3><p>By-laws that may add their own requirements for condominiums.</p></div>
+    </div>
+    <div class="seg" id="ptype" role="group" aria-label="Property type">
+      <button type="button" data-p="hdbflat" aria-pressed="true">HDB whole flat</button>
+      <button type="button" data-p="hdbroom" aria-pressed="false">HDB bedroom</button>
+      <button type="button" data-p="private" aria-pressed="false">Private home</button>
+    </div>
+    <div class="prog" style="margin-bottom:6px"><i id="cprog"></i></div>
+    <div class="ph-sub" id="cstatus" aria-live="polite" style="margin-bottom:12px"></div>
+    <div class="grid g2" id="clist"></div>
+    <div class="flowtitle">Flow 6: The landlord journey, from deciding to rent to tax filing</div>
+    <div class="flow" style="max-width:760px">
+      <div class="step"><b>Owner decides to rent out a unit or room</b><span>Picks the property type in Rentnito</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Eligibility and approval check</b><span>Rentnito shows which rules apply before any listing goes live</span></div>
+      <div class="down">&darr;</div>
+      <div class="fan f3">
+        <div class="step"><b>HDB whole flat</b><span>Citizen owner, minimum occupation period, tenant pass check</span></div>
+        <div class="step"><b>HDB bedroom</b><span>HDB approval per bedroom and per new tenant</span></div>
+        <div class="step"><b>Private home</b><span>3-month minimum stay, occupancy cap, MCST by-laws</span></div>
+      </div>
       <div class="down">&darr;</div>
       <div class="branch">
-        <div class="step good"><b>Settlement</b><span>Signed agreement, funds released</span></div>
-        <div class="step"><b>No agreement</b><span>Move to the next tier</span></div>
+        <div class="step good"><b>All clear</b><span>Proceed to the tenancy</span></div>
+        <div class="step bad"><b>Not allowed or unsure</b><span>Rentnito flags the gap and links to the agency</span></div>
       </div>
       <div class="down">&darr;</div>
-      <div class="step bad"><b>Tier 4: Small Claims Tribunals</b><span>Evidence pack exported for filing. Funds released only on a tribunal order or later settlement</span></div>
+      <div class="step"><b>Tenancy signed and move-in report done</b><span>Enters Flow 1, evidence is locked in</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Stamp duty reminder</b><span>Due within 14 days of signing in Singapore, tenant pays unless agreed otherwise</span></div>
+      <div class="down">&darr;</div>
+      <div class="step"><b>During the tenancy</b><span>Report changes to HDB within 7 days where required, renew approvals for new tenants</span></div>
+      <div class="down">&darr;</div>
+      <div class="step hl"><b>Tax season prompt</b><span>Rental income summary and expense records ready for the annual filing with IRAS</span></div>
+      <div class="down">&darr;</div>
+      <div class="branch">
+        <div class="step good"><b>Tenancy ends cleanly</b><span>Move-out report, deposit released (Flow 4)</span></div>
+        <div class="step"><b>Dispute</b><span>Enters the tiers in Flow 5</span></div>
+      </div>
     </div>
-    <div class="grid g2" style="margin-top:20px">
-      <div class="card"><h3>Why start with AI mediation</h3><ul class="tight"><li>Most deposit disputes are small and fact-based, so a documented comparison settles many of them.</li><li>It is fast, available at any hour and cheap enough to use on a S$300 deduction.</li><li>It lowers the emotional temperature, because both sides see the same evidence and a neutral proposal.</li></ul></div>
-      <div class="card"><h3>Guardrails for the AI tier</h3><ul class="tight"><li>Facilitates and proposes only. It never forces an outcome and never gives legal advice.</li><li>Both parties must agree to use it and can leave at any time.</li><li>Higher-value or complex cases default to a human mediator, with a starting threshold (for example S$1,000) to be tested.</li><li>Every settlement is signed by both parties before any money moves.</li></ul></div>
-      <div class="card"><h3>Why keep a human option</h3><ul class="tight"><li>Some disputes turn on trust, intent or unrecorded facts that photos cannot show.</li><li>A neutral person can handle strong emotion and large sums better than software.</li><li>Referral fees from a mediator panel add a small revenue line without adding staff.</li></ul></div>
-      <div class="card"><h3>What still needs checking</h3><ul class="tight"><li>Which mediators or mediation providers will join a referral panel, and on what terms.</li><li>Whether the platform's AI summary could be treated as a regulated service. Take Singapore legal advice.</li><li>PDPA handling of photos and statements used in a dispute.</li></ul></div>
-    </div>
-    <p class="note"><b>Small Claims Tribunals.</b> The Singapore Courts site says the Tribunals hear claims up to S$30,000, including residential tenancy disputes where the term is two years or less. Longer tenancies or larger sums go elsewhere, so check eligibility case by case.</p>
+    <p class="note"><b>Why owners stay.</b> Every step is a reminder with a due date, so the landlord side becomes a reason to return each year, not only at move-in. Rentnito prompts and organises. It does not file taxes or submit approvals on the owner's behalf in this version.</p>
+
+    <p class="note"><b>Not tax or legal advice.</b> The checklist is built from agency pages and one property guide (stamp duty rates), and rules change. Some points are shortened, for example HDB also sets conditions on tenancy length and tenant ownership that owners should confirm on the HDB site. The product would link each item to the current agency page and show the date it was last reviewed.</p>
   </div>
 </section>
 
@@ -441,6 +536,8 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
         <tr><td>Landlord reports and plans</td><td>Landlords</td><td>S$9.90 per report or about S$49 a year (blended S$29 per tenancy)</td><td>About 93%</td></tr>
         <tr><td>Partner referrals and ads</td><td>Movers, ISPs, retailers, cleaners</td><td>About S$60 per booking, with around 35% of tenancies booking at maturity (S$21 per tenancy)</td><td>About 97%</td></tr>
         <tr><td>Overseas video walkthrough</td><td>Overseas tenants</td><td>About S$80 per tour, with around 7.5% of tenancies taking one (S$6 per tenancy)</td><td>About 38% after host payout</td></tr>
+        <tr><td>Dispute resolution (Tier 2)</td><td>Both parties, split</td><td>A percentage of the amount in dispute with a floor and cap (placeholder: 5%, S$20 to S$100). Not in the base forecast</td><td>High, mostly software and review time</td></tr>
+        <tr><td>Landlord compliance checklist</td><td>Included in the landlord plan</td><td>A retention feature rather than a separate charge. Not modelled</td><td>Not applicable</td></tr>
       </tbody>
     </table>
     </div>
@@ -463,16 +560,23 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     <h3 style="margin-top:28px">Which licences may apply</h3>
     <div class="scroll">
     <table class="tl">
-      <thead><tr><th>Regime</th><th>Why it may apply</th><th>What I could confirm</th></tr></thead>
+      <thead><tr><th>Topic</th><th>What the sources say</th><th>What it means for Rentnito</th></tr></thead>
       <tbody>
-        <tr><td>Payment Services Act (MAS)</td><td>Receiving money from one party and paying it to another in Singapore may count as domestic money transfer. Running accounts that hold the funds may count as account issuance.</td><td>MAS lists both services but its page does not mention escrow or deposits. The MAS FAQ raises escrow without a clear answer I could read. It does say an intermediary that merely passes money on is not automatically regulated. Unresolved.</td></tr>
-        <tr><td>Payment institution classes</td><td>Standard institution (volume ceilings) or major institution (no ceilings, stricter duties).</td><td>A secondary summary gives base capital of S$100,000 for standard and S$250,000 for major, plus a security deposit and safeguarding duties for major. Confirm every figure with MAS.</td></tr>
-        <tr><td>Securities and Futures Act</td><td>Investing customers' money in securities for them is managing a portfolio of capital markets products, which is licensed fund management.</td><td>Described as licensed in a law firm summary. Confirm the exact licence and any exemptions with counsel.</td></tr>
-        <tr><td>Estate agency rules (CEA)</td><td>Negotiating or closing leases for others is regulated agency work.</td><td>Avoided by keeping the walkthrough to inspection only and not touching lease terms.</td></tr>
-        <tr><td>PDPA</td><td>Condition photos and dispute statements are personal data.</td><td>Applies whatever path is chosen. Collect the minimum and obtain consent.</td></tr>
+        <tr><td>Is it a payment service?</td><td>MAS lists seven services: account issuance, domestic money transfer, cross-border money transfer, merchant acquisition, e-money issuance, digital payment token services and money-changing. Its FAQ raises escrow but does not give a clear answer, and uses a payments nexus test.</td><td>A tool that pools deposits and releases them probably counts as domestic money transfer, and possibly account issuance. Not settled for escrow, so get written advice or ask MAS.</td></tr>
+        <tr><td>Commercial agent exclusion</td><td>An agent authorised to negotiate or conclude a sale or purchase for the payer or payee can fall outside payment services, per the MAS FAQ and a law firm summary.</td><td>Rentnito does not negotiate the lease, and doing so would risk CEA agency rules, so this exclusion is unlikely to help.</td></tr>
+        <tr><td>Cross-border payments</td><td>Cross-border money transfer covers inbound and outbound remittance. A provider handling only the domestic leg for a licensed cross-border provider does not need the cross-border licence.</td><td>Overseas tenants paying a deposit from abroad could add this. Route them through a licensed remittance provider or bank into the Singapore holding account.</td></tr>
+        <tr><td>E-money and crypto</td><td>E-money issuance is stored value used to pay merchants or transfer to others. Digital payment token services concern crypto assets.</td><td>Keep deposits as a one-off pay-in and pay-out, not a wallet balance. Do not touch crypto, so those two services are unlikely to apply.</td></tr>
+        <tr><td>Standard institution (SPI)</td><td>Thresholds of S$3m a month for one service or S$6m across two or more, and S$5m e-money float. Base capital S$100,000. Application S$1,000 and annual fee S$5,000, or the per-service total if higher. No safeguarding duty under section 23.</td><td>The base case holds about S$5.25m of deposits a year in Year 5, roughly S$0.44m a month inbound, so an SPI ceiling would not bind. Safeguarding is not required, but a bank trust account would still protect users and trust.</td></tr>
+        <tr><td>Major institution (MPI)</td><td>No volume ceilings. Base capital S$250,000 and a security deposit of S$100,000, or S$200,000 above S$6m a month. Application S$1,500 and annual fee S$10,000. Customer money must be safeguarded by a bank guarantee or undertaking, or a trust account.</td><td>Only needed at much larger volume. Safeguarding rules would apply.</td></tr>
+        <tr><td>Licence conditions</td><td>A Singapore company (or foreign corporation) with a permanent place of business or registered office in Singapore. At least one executive director who is a Singapore citizen or PR. Someone present at the place of business at least 8 hours on 10 days a month. AML and counter-terrorism financing controls, a management-level compliance officer, technology risk and cyber hygiene, and MAS approval for 20% shareholders and key appointments.</td><td>This is where the real cost sits: people, process and capital rather than fees. No processing time was stated in the pages I read.</td></tr>
+        <tr><td>Securities and Futures Act</td><td>Investing customers' money by managing portfolios of capital markets products is licensed fund management, per a law firm summary.</td><td>Another reason not to invest the deposits. Confirm the exact licence and exemptions with counsel.</td></tr>
+        <tr><td>Estate agency rules (CEA)</td><td>Negotiating or closing leases for others is regulated agency work.</td><td>Avoided by keeping the walkthrough to inspection only.</td></tr>
+        <tr><td>PDPA</td><td>Condition photos and dispute statements are personal data.</td><td>Applies on every path. Collect the minimum and obtain consent.</td></tr>
       </tbody>
     </table>
     </div>
+
+    <p class="note"><b>Practical read.</b> Licence fees are small. The cost that matters is the director, compliance officer, AML systems, audit and capital, which is why the calculator below uses S$120k a year as my placeholder for running a licensed escrow. Overall, your summary is broadly right: the regulated services are e-money issuance, domestic and cross-border transfers and digital payment tokens. For a rental deposit tool the realistic triggers are domestic money transfer, account issuance and, for overseas tenants, cross-border transfer.</p>
 
     <h3 style="margin-top:28px">Investing the deposits</h3>
     <div class="grid g2">
@@ -500,7 +604,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     <h2>Five-year revenue forecast</h2>
     <p class="sub">Year 1 starts at public launch (target March 2027). Switch between scenarios to see how the numbers move.</p>
     <noscript><p class="note">Turn on JavaScript to view the interactive forecast.</p></noscript>
-    <div class="seg" role="group" aria-label="Scenario">
+    <div class="seg" id="scn" role="group" aria-label="Scenario">
       <button type="button" data-s="cons" aria-pressed="false">Conservative</button>
       <button type="button" data-s="base" aria-pressed="true">Base</button>
       <button type="button" data-s="opt" aria-pressed="false">Optimistic</button>
@@ -536,15 +640,15 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     <h2>Business model canvas</h2>
     <p class="sub">One page view of how Rentnito creates, delivers and captures value.</p>
     <div class="canvas">
-      <div class="card" style="grid-row:span 2"><h3>Key partners</h3><ul><li>Moving companies</li><li>Internet providers</li><li>Energy retailers</li><li>Cleaning services</li><li>Vetted local hosts</li><li>Licensed bank or payment partner</li><li>Mediator panel</li></ul></div>
+      <div class="card" style="grid-row:span 2"><h3>Key partners</h3><ul><li>Moving companies</li><li>Internet providers</li><li>Energy retailers</li><li>Cleaning services</li><li>Vetted local hosts</li><li>Licensed bank or payment partner</li><li>Mediators: CMC, SMC and a private panel</li></ul></div>
       <div class="card"><h3>Key activities</h3><ul><li>Build and run the platform</li><li>Onboard partners</li><li>Content and SEO</li><li>Coordinate walkthrough hosts</li></ul></div>
-      <div class="card" style="grid-row:span 2"><h3>Value propositions</h3><ul><li>Landlords: protect the deposit and the asset</li><li>Tenants: a fair, shared record, free</li><li>Partners: high-intent leads at move-in</li><li>Overseas tenants: see the unit before arriving</li></ul></div>
+      <div class="card" style="grid-row:span 2"><h3>Value propositions</h3><ul><li>Landlords: protect the deposit and the asset</li><li>Landlords: a checklist for HDB, IRAS and URA duties</li><li>Tenants: a fair, shared record, free</li><li>Partners: high-intent leads at move-in</li><li>Overseas tenants: see the unit before arriving</li></ul></div>
       <div class="card"><h3>Customer relationships</h3><ul><li>Self-serve product</li><li>Email reminders</li><li>Concierge for video tours</li></ul></div>
       <div class="card" style="grid-row:span 2"><h3>Customer segments</h3><ul><li>Direct landlords (primary payer)</li><li>Tenants (free)</li><li>Overseas and expat tenants</li><li>Service partners (advertisers)</li></ul></div>
       <div class="card"><h3>Key resources</h3><ul><li>Software platform</li><li>Partner network</li><li>Brand and trust</li><li>Anonymised report data</li></ul></div>
       <div class="card"><h3>Channels</h3><ul><li>SEO guides</li><li>Reddit and Facebook groups</li><li>Shareable report links</li><li>Partner referrals</li></ul></div>
       <div class="card w"><h3>Cost structure</h3><ul><li>Hosting, storage and tools</li><li>Payment processing fees</li><li>Marketing and content</li><li>Legal and PDPA compliance</li><li>Walkthrough host payouts</li><li>Licence, legal and audit costs if deposits are held</li></ul></div>
-      <div class="card w"><h3>Revenue streams</h3><ul><li>Per-report fee (about S$9.90) and landlord plan (about S$49 a year)</li><li>Partner referral and advertising fees</li><li>Overseas video walkthrough fee (about S$80)</li><li>Dispute fees: AI mediation and mediator referrals (not in base case)</li><li>Deposit float or handling fee (licence-dependent, not in base case)</li></ul></div>
+      <div class="card w"><h3>Revenue streams</h3><ul><li>Per-report fee (about S$9.90) and landlord plan (about S$49 a year)</li><li>Partner referral and advertising fees</li><li>Overseas video walkthrough fee (about S$80)</li><li>Dispute fee: a percentage of the amount in dispute, split between parties (not in base case)</li><li>Deposit float or handling fee (licence-dependent, not in base case)</li></ul></div>
     </div>
   </div>
 </section>
@@ -555,11 +659,11 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     <p class="sub">The plan is staged so that money is only spent once each assumption has been tested.</p>
     <ol class="timeline">
       <li><div class="when">Oct to Nov 2026: Validate</div><span class="goal">Goal: 100 waitlist sign-ups, 5 landlords willing to pre-pay</span><p>20 landlord and tenant interviews, competitor scan, landing page with waitlist, CEA and PDPA check, own entity and accounts set up. Get written Singapore legal advice on the deposit question (Payment Services Act and Securities and Futures Act) before designing anything that touches money.</p></li>
-      <li><div class="when">Dec 2026 to Feb 2027: Build the MVP</div><span class="goal">Goal: working product in 6 to 8 weeks</span><p>Photo condition reports, link-based sign-off, PDF export, inventory and meter log, move-in checklist version 1.</p></li>
+      <li><div class="when">Dec 2026 to Feb 2027: Build the MVP</div><span class="goal">Goal: working product in 6 to 8 weeks</span><p>Photo condition reports, link-based sign-off, PDF export, inventory and meter log, move-in checklist version 1, landlord compliance checklist version 1.</p></li>
       <li><div class="when">Mar 2027: Public launch (Singapore)</div><span class="goal">Goal: first 100 landlords on the free tier</span><p>Free tier live, SEO guides published, community outreach starts. Year 1 begins.</p></li>
       <li><div class="when">Apr to Aug 2027: Monetise</div><span class="goal">Goal: first paying landlords and 4 partner pilots</span><p>Payments live, 2 movers, 1 ISP and 1 cleaning partner piloted with tracked referrals.</p></li>
       <li><div class="when">Year 1 end (Feb 2028)</div><span class="goal">Goal: about 250 paid tenancies, about S$9k revenue</span><p>Repair log and rent reminders added. Partner marketplace expanded.</p></li>
-      <li><div class="when">Year 2 (Mar 2028 to Feb 2029)</div><span class="goal">Goal: about 900 paid tenancies, operating breakeven</span><p>Pilot the overseas video walkthrough with vetted freelancers. Add energy retailers as partners. Launch AI-assisted mediation and a small mediator panel on top of the free negotiation tier.</p></li>
+      <li><div class="when">Year 2 (Mar 2028 to Feb 2029)</div><span class="goal">Goal: about 900 paid tenancies, operating breakeven</span><p>Pilot the overseas video walkthrough with vetted freelancers. Add energy retailers as partners. Launch Rentnito guided resolution (percentage fee) with referral links to the Community Mediation Centre, Singapore Mediation Centre and private mediators.</p></li>
       <li><div class="when">Year 3 (to Feb 2030)</div><span class="goal">Goal: about 2,200 paid tenancies, about S$123k revenue</span><p>Consider landlord-direct listings and agreement templates after CEA advice. Explore room rental and co-living segments. Decision gate on deposits: stay out, use a licensed partner, or apply for a licence, based on volume and legal advice.</p></li>
       <li><div class="when">Years 4 to 5</div><span class="goal">Goal: 4,000 to 6,000 paid tenancies</span><p>Decide whether to deepen Singapore, add adjacent segments or take the model to a second market.</p></li>
     </ol>
@@ -594,6 +698,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
 <footer>
   <div class="wrap">
     <p><b>Sources.</b> Private rental contracts for 2025 (89,376) from URA data as reported by <a href="https://edgeprop.sg/property-news/singapore-private-home-prices-modest-06-4q2025-while-rents-dip-05">EdgeProp</a>. HDB approved rental applications for 2025 (39,408) and flats rented out (58,775 at end 2025) from HDB data as reported by <a href="https://www.99.co/singapore/insider/hdb-ura-q42025-statistics/">99.co</a>. Non-resident population (about 1.91 million, June 2025) from <a href="https://www.strategygroup.gov.sg/files/population_in_brief_2025.pdf">Population in Brief 2025</a>. Payment services categories from the <a href="https://www.mas.gov.sg/regulation/payments/licensing-for-payment-service-providers/types-of-payment-services">MAS page on types of payment services</a> and the <a href="https://www.mas.gov.sg/-/media/MAS/FAQ/Payment-Services-Act-FAQ-4-October-2019.pdf">MAS Payment Services Act FAQ</a>. Fund management as a licensed activity from a <a href="https://resourcehub.bakermckenzie.com/en/resources/global-financial-services-regulatory-guide/asia-pacific/singapore/topics/what-types-of-activities-require-a-license-in-your-jurisdiction">Baker McKenzie regulatory guide</a>. Small Claims Tribunals scope from the <a href="https://www.judiciary.gov.sg/civil/small-claims">Singapore Courts</a>. Rently from <a href="https://fintechnews.sg/83678/proptech/rently-debuts-in-singapore-offering-deposit-free-and-singpass-verified-rentals/">Fintech News Singapore</a>.</p>
+    <p><b>Landlord and dispute sources.</b> Rental income and the 15% deemed expense option from an <a href="https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/e-Tax_Guides/e-Tax%20Guide_IIT_Simplification_of_Claim_of_Rental_Expenses_for_Individuals.pdf">IRAS e-Tax guide</a>. Stamp duty rates and deadlines from a <a href="https://blog.cove.sg/stamp-duty-for-rental-in-singapore/">property guide</a>, so confirm them on the IRAS site. HDB rules from the <a href="https://www.hdb.gov.sg/business/estate-agents-and-salespersons/renting-out-a-flat-or-bedroom/eligibility">HDB renting out page</a> and private home rules from the <a href="https://www.ura.gov.sg/guidelines/property-and-business-owners/property/renting-property/">URA page</a>. Mediation from the <a href="https://cmc.mlaw.gov.sg/apply-for-mediation/disputes-suitable-for-mediation/">Community Mediation Centre</a>, the <a href="https://mediation.com.sg/wp-content/uploads/2026/02/Fee-Schedule-Annex-B-1-March-2026.pdf">Singapore Mediation Centre fee schedule</a>, the <a href="https://www.mlaw.gov.sg/files/NoteonMediationAct.pdf">Ministry of Law note on the Mediation Bill</a> and the <a href="https://www.judiciary.gov.sg/civil/file-small-claim">Small Claims Tribunals</a>. Payment services detail from the <a href="https://www.mas.gov.sg/-/media/mas/regulations-and-financial-stability/regulations-guidance-and-licensing/payment-service-providers/guide-to-the-payment-services-act-2019.pdf">MAS guide to the Payment Services Act</a>, the <a href="https://www.mas.gov.sg/-/media/MAS/Fintech/Payment-Services-Act/Payment-Services-Act-FAQ-11-May-2020.pdf">MAS FAQ</a>, a <a href="https://www.wongpartnership.com/upload/EmailEDM/Navigating%20the%20Payment%20Services%20Act.pdf">WongPartnership briefing</a> and a <a href="https://compliance.waystone.com/licensing-guide-payment-services-act-psa/">Waystone licensing guide</a>.</p>
     <p><b>Licensing note.</b> The licensing summary is a research starting point drawn from public pages and secondary sources. It is not legal advice and the escrow question is unresolved. Confirm everything with a Singapore lawyer or MAS before acting.</p>
     <p><b>Disclaimer.</b> This document contains forward-looking assumptions and is for discussion only. It is not investment, legal or financial advice, and nothing here is an offer to sell or a solicitation to buy securities.</p>
   </div>
@@ -640,6 +745,73 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     return (r < 0 ? '-S$' : 'S$') + Math.abs(r).toLocaleString('en-SG') + 'k';
   }
   function m2(n){ return 'S$' + (n / 1e6).toFixed(2) + 'm'; }
+  function money2(n){ return 'S$' + n.toFixed(2); }
+  var OWNER = {
+    hdbflat: [
+      { t: "Confirm you may rent out the whole flat", d: "Only Singapore Citizen owners can rent out the entire flat. The minimum occupation period is generally 5 years, and Prime and Plus flats cannot be rented out. HDB lets owners print an eligibility confirmation from My HDBPage.", w: "HDB", when: "Before listing" },
+      { t: "Check each tenant's status", d: "Tenants can be citizens, permanent residents, or non-citizens with an eligible pass valid for at least 6 months. Tourists are not allowed, and construction, marine and process Work Permit holders must be Malaysian.", w: "HDB", when: "Before signing" },
+      { t: "Check the non-citizen quota", d: "If any tenant is a non-Malaysian non-citizen, the quota is 8% per neighbourhood and 11% per block. Check availability on HDB's e-Service.", w: "HDB", when: "Before signing" },
+      { t: "Stay within the tenant limit", d: "At most 4 tenants in a 1 or 2-room flat, 6 in a 3-room flat and 8 in a 4-room or bigger flat. The 8 reverts to 6 for rentals extending beyond 31 December 2028. The limits do not apply if all tenants are from one family.", w: "HDB", when: "Before signing" }
+    ],
+    hdbroom: [
+      { t: "Confirm the bedroom can be rented", d: "Only owners of 3-room or bigger flats can rent out bedrooms, and only bedrooms originally built by HDB. The limit is one bedroom in a 3-room flat and two in a 4-room or bigger flat.", w: "HDB", when: "Before listing" },
+      { t: "Get HDB approval first", d: "Apply through HDB e-Services before the tenancy starts and before any new tenant moves in. The administrative fee is S$9 per bedroom and the result is immediate.", w: "HDB", when: "Before move-in" },
+      { t: "Report changes within 7 days", d: "Tell HDB about tenant changes or move-outs within 7 days.", w: "HDB", when: "Within 7 days of a change" },
+      { t: "Stay within the occupant limit", d: "Occupants include the owner, authorised occupiers and tenants. The cap is 6 in a 3-room flat and 8 in a 4-room or bigger flat, reverting to 6 after 31 December 2028. The non-citizen quota does not apply to bedroom rentals, but the same tenant eligibility rules do.", w: "HDB", when: "Before signing" }
+    ],
+    private: [
+      { t: "Respect the minimum stay", d: "All occupants must stay at least three consecutive months. Renting by the day or week is short-term accommodation, which is not allowed.", w: "URA", when: "Before signing" },
+      { t: "Stay within the occupancy cap", d: "Properties under 90 sqm may house up to six unrelated persons, and the cap also applies to sublets. From 22 January 2024 to 31 December 2028, properties of at least 90 sqm may house up to eight if registered with URA for a S$20 fee and the conditions are met.", w: "URA", when: "Before signing" },
+      { t: "Check the MCST by-laws", d: "URA does not require tenants to be registered, but the management corporation may have its own rules and requirements.", w: "MCST", when: "Before signing" }
+    ],
+    common: [
+      { t: "Declare the rental income to IRAS", d: "Rental income is taxable. Individuals can claim actual expenses, or a deemed 15% of gross rent on residential property, with mortgage interest claimed on top. The 15% option has conditions, for example it is not available if the property is permitted for any non-residential use.", w: "IRAS", when: "Every year, in the tax return" },
+      { t: "Stamp the tenancy agreement", d: "Within 14 days of signing in Singapore, or 30 days after the document reaches Singapore if signed overseas. For leases of four years or less the duty is monthly rent times the number of months times 0.4%, paid by the tenant unless the agreement says otherwise. Late stamping carries penalties. Rates are from a property guide, so confirm on IRAS.", w: "IRAS", when: "Within 14 days of signing" },
+      { t: "Check your property tax rate", d: "Owner-occupied homes enjoy lower property tax rates than homes the owner does not occupy. Check whether owner-occupier rates still apply once the home is rented out. IRAS has an online service to apply for or withdraw owner-occupier rates.", w: "IRAS", when: "When the tenancy starts" },
+      { t: "Keep your records together", d: "Keep the signed agreement, stamping receipt, rent receipts and expense records in one place. Rentnito would store the signed condition reports alongside them. This is good practice rather than a rule quoted from an agency.", w: "Good practice", when: "Throughout the tenancy" }
+    ]
+  };
+  var ownerType = 'hdbflat';
+  function updateOwnerProgress(){
+    var boxes = $$('#clist input'), n = 0;
+    boxes.forEach(function(b){ if (b.checked) n++; });
+    var bar = document.getElementById('cprog');
+    if (bar) bar.style.width = (boxes.length ? n / boxes.length * 100 : 0) + '%';
+    var st = document.getElementById('cstatus');
+    if (st) st.textContent = n + ' of ' + boxes.length + ' items checked';
+  }
+  function renderOwner(p){
+    ownerType = p;
+    var items = OWNER[p].concat(OWNER.common), html = '';
+    items.forEach(function(it, i){
+      html += '<label class="card chk"><input type="checkbox" data-i="' + i + '"><div><b>' + it.t + '</b><p>' + it.d + '</p><div style="margin-top:8px"><span class="pill">' + it.w + '</span><span class="when">' + it.when + '</span></div></div></label>';
+    });
+    var box = document.getElementById('clist');
+    box.innerHTML = html;
+    prepCards(box);
+    updateOwnerProgress();
+  }
+  function renderDisp(){
+    var g = function(id){ return document.getElementById(id); };
+    var amt = +g('d-amt').value, pct = +g('d-pct').value, mn = +g('d-min').value, mx = +g('d-max').value;
+    var rate = +g('d-rate').value, up = +g('d-up').value;
+    if (mx < mn) mx = mn;
+    g('o-amt').textContent = money(amt);
+    g('o-pct').textContent = pct.toFixed(1) + '%';
+    g('o-min').textContent = money(mn);
+    g('o-max').textContent = money(mx);
+    g('o-rate').textContent = rate + '%';
+    g('o-up').textContent = up + '%';
+    var fee = Math.min(mx, Math.max(mn, amt * pct / 100));
+    var disputes = curT5 * rate / 100 * up / 100;
+    g('disp-out').innerHTML =
+      '<div class="card stat"><div class="num">' + money2(fee) + '</div><div class="lbl">Total Tier 2 fee for this dispute</div></div>' +
+      '<div class="card stat"><div class="num">' + money2(fee / 2) + '</div><div class="lbl">Each party pays (split equally)</div></div>' +
+      '<div class="card stat"><div class="num">Up to S$400</div><div class="lbl">Singapore Mediation Centre, per party for a full day (disputes up to S$60,000)</div></div>' +
+      '<div class="card stat"><div class="num">' + Math.round(disputes).toLocaleString('en-SG') + '</div><div class="lbl">Tier 2 disputes in Year 5</div></div>' +
+      '<div class="card stat"><div class="num">' + money(disputes * fee) + '</div><div class="lbl">Dispute fee revenue in Year 5</div></div>';
+    prepCards(g('disp-out'));
+  }
   function model(key){
     var s = SC[key], out = [];
     for (var i = 0; i < 5; i++){
@@ -677,6 +849,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     var m = model(key);
     curT5 = m[4].t;
     renderDep();
+    renderDisp();
     var y3 = m[2].rev, y5 = m[4].rev;
     var be = null;
     for (var i = 0; i < 5; i++){ if (m[i].op > 0){ be = m[i].y; break; } }
@@ -961,7 +1134,22 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
   ['i-share', 'i-dep', 'i-yield', 'i-cost'].forEach(function(id){
     document.getElementById(id).addEventListener('input', renderDep);
   });
-  var btns = $$('.seg button');
+  ['d-amt', 'd-pct', 'd-min', 'd-max', 'd-rate', 'd-up'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', renderDisp);
+  });
+  var ptBtns = $$('#ptype button');
+  ptBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      ptBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      renderOwner(b.getAttribute('data-p'));
+    });
+  });
+  document.getElementById('clist').addEventListener('change', function(e){
+    var lab = e.target.closest ? e.target.closest('.chk') : null;
+    if (lab) lab.classList.toggle('done', e.target.checked);
+    updateOwnerProgress();
+  });
+  var btns = $$('#scn button');
   btns.forEach(function(b){
     b.addEventListener('click', function(){
       btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
@@ -969,6 +1157,7 @@ input.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-r
     });
   });
   render('base');
+  renderOwner('hdbflat');
 })();
 </script>
 </body>
